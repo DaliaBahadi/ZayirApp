@@ -1,0 +1,65 @@
+﻿@page "/Gate/List"
+
+@inject GateService Service
+
+<h1>Gates</h1>
+
+<a href="Category/Add">
+    <span class="oi oi-plus"></span> &nbsp;
+    Add New gate
+</a>
+
+<div class="mt-2"></div>
+
+@if (gates == null)
+{
+<div class="d-flex align-items-center">
+    <strong>Loading data ...</strong>
+    <div class="spinner-border ml-auto"></div>
+</div>
+}
+else
+{
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Evacuation Plan File</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in gates)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.EvacuationPlanFile</td>
+            <td>
+                <a href="Gate/Details/@item.GateId"><span class="oi oi-list"></span></a> &nbsp;
+                <a href="Category/Edit/@item.GateId"><span class="oi oi-pencil"></span></a> &nbsp;
+                <a href="Category/Delete/@item.GateId"><span class="oi oi-trash"></span></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+@code {
+    // Create a list of gates to display in the component
+    //List<Gate>
+    gates = new List<Gate>
+        ();
+        List<Gate>
+            gates;
+
+            // Load the list when the component initilizes
+            protected override void OnInitialized()
+            {
+            // Get the gates from the service
+            gates = Service.GetGates();
+            }
+            }
+
+

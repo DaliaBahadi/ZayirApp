@@ -1,0 +1,34 @@
+﻿@page "/Department/Details/{Id:int}"
+@using ZayirApp.Data;
+
+@*@inject DepartmentService Service*@
+
+<h3>Department Details</h3>
+
+<table>
+    <tr>
+
+        <td>@department.Id</td>
+    </tr>
+    <tr>
+        <td>Name: </td>
+        <td>@department.Name</td>
+    </tr>
+</table>
+
+<br />
+<a href="/Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+@code {
+
+    Department department = new Department();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        //department = Service.GetDepartment(Id);
+    }
+}
+

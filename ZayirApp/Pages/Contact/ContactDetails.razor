@@ -1,0 +1,84 @@
+﻿@page "/Contact/Details/{Id:int}"
+
+@using ZayirApp.Data;
+@*@inject ContactService Service*@
+
+<h3>Contact Details</h3>
+
+<table class="table table-hover">
+
+    <tr>
+        <td>First Name: </td>
+        <td>@contact.FirstName</td>
+    </tr>
+
+    <tr>
+        <td>Father Name: </td>
+        <td>@contact.FatherName</td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td>@contact.LastName</td>
+    </tr>
+    <tr>
+        <td>Email: </td>
+        <td>@contact.Email</td>
+    </tr>
+
+    <tr>
+        <td>Mobile: </td>
+        <td>@contact.Mobile</td>
+    </tr>
+    <tr>
+        <td>Language: </td>
+        <td>@contact.Language</td>
+    </tr>
+    <tr>
+        <td>Gender: </td>
+        <td>@contact.Gender</td>
+    </tr>
+    <tr>
+        <td>Contact Type: </td>
+        <td>@contact.Type</td>
+    </tr>
+
+    <tr>
+        <td>Department: </td>
+        <td>@contact.Department</td>
+    </tr>
+
+    <tr>
+        <td>Phone Extension: </td>
+        <td>@contact.PhoneExtension</td>
+    </tr>
+
+    <tr>
+        <td>Office Number: </td>
+        <td>@contact.OfficeNumber</td>
+    </tr>
+
+
+
+
+    <tr>
+        <td>Is Checked: </td>
+        <td>@product.IsChecked</td>
+    </tr>
+
+</table>
+
+<a href="/Contact/List" class="btn btn-info" role="button">Cancel</a>
+
+@code {
+
+    Contact contact = new Contact();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        contact = Service.GetContact(Id);
+    }
+}
+

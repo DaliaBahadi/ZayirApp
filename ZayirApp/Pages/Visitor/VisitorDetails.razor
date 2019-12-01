@@ -1,0 +1,94 @@
+﻿@page "/Visitor/Details/{Id:int}"
+@*@inject VisitorService Service*@
+
+@using ZayirApp.Data;
+
+<h3>Visitor Details</h3>
+
+<table class="table table-hover">
+
+    <tr>
+        <td>First Name: </td>
+        <td>@visitor.FirstName</td>
+    </tr>
+    <tr>
+        <td>Father Name: </td>
+        <td>@visitor.FatherName</td>
+    </tr>
+    <tr>
+        <td>Grandfather Name:</td>
+        <td>@visitor.GrandfatherName</td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td>@visitor.LastName</td>
+    </tr>
+    <tr>
+        <td>National Id:</td>
+        <td>@document.DocumentNumber</td>
+    </tr>
+    <tr>
+        <td>Email: </td>
+        <td>@visitor.Email</td>
+    </tr>
+    <tr>
+        <td>Mobile: </td>
+        <td>@visitor.Mobile</td>
+    </tr>
+    <tr>
+        <td>Date Of Birth: </td>
+        <td>@visitor.BirhtDate</td>
+    </tr>
+    <tr>
+        <td>Language: </td>
+        <td>@visitor.Language</td>
+    </tr>
+    <tr>
+        <td>Gender: </td>
+        <td>@visitor.Gender</td>
+    </tr>
+    <tr>
+        <td>Job Title:</td>
+        <td>@visitor.JobTitle</td>
+    </tr>
+    <tr>
+        <td>Company: </td>
+        <td>@visitor.Company</td>
+    </tr>
+    <tr>
+        <td>Car License Plate:</td>
+        <td>@visitor.CarLicensePlate</td>
+    </tr>
+    <tr>
+        <td>Clearance Level: </td>
+        <td>@visitor.ClearanceLevel</td>
+    </tr>
+    <tr>
+        @*<td>Add to Watch-list:</td>
+            <td>@visitor.IsBlackListed</td>*@
+        <Form>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Check1">
+                <label class="form-check-label" for="Check1">
+                    Add to Watch-list
+                </label>
+            </div>
+        </Form>
+    </tr>
+
+</table>
+
+<a href="/Visitor/List" class="btn btn-info" role="button">Cancel</a>
+
+@code {
+
+    Visitor visitor = new Visitor();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        visitor = Service.GetVisitor(Id);
+    }
+}

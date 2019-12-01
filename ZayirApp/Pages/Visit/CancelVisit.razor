@@ -1,0 +1,48 @@
+﻿@page "/Visit/Cancel/{Id:int}"
+@using ZayirApp.Data
+
+@*@inject NavigationManager NavigationManager
+    @inject CategoryService Service*@
+
+<h3>Cancel Visit</h3>
+
+<div class="alert alert-danger">
+    Do you want to cancel this Visit?
+</div>
+
+<table>
+    <tr>
+        <td>Name:</td>
+        <td>@visit.Name</td>
+
+    </tr>
+
+</table>
+<br />
+<button type="submit" class="btn btn-outline-danger" @onclick="CancelVisit">Cancel Visit</button>
+<a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+<br />
+
+@code {
+
+    Visit visit = new visit();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private void CancelVisit()
+    {
+        Service.Deletevisit(Id);
+
+        NavigationManager.NavigateTo("Visit/List");
+    }
+
+    protected override void OnInitialized()
+    {
+        visit= Service.GetVisit(Id);
+    }
+
+}
+
+

@@ -1,0 +1,168 @@
+﻿@page "/Contact/Add"
+
+@*@inject DepartmentService CatService
+@inject ContactService ProdService*@
+@using ZayirApp.Data;
+
+<h3>Add New Contact</h3>
+
+<fieldset>
+    <legend>Add Contact</legend>
+    <EditForm Model="contact" OnValidSubmit="AddContact">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group col-md-6">
+            <label for="first-name">First Name*</label>
+            <InputText id="first-name" @bind-Value="contact.FirstName" class="form-control" />
+        </div>
+
+      
+
+        <div class="form-group col-md-6">
+            <label for="last-name">Last Name*</label>
+            <InputText id="last-name" @bind-Value="contact.LastName" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="email">Email*</label>
+            <Input type="email" id="email" @bind-Value="contact.Email" class="form-control" placeholder="tom@gmail.com" />
+        </div>
+            <div class="form-group col-md-6">
+                <label for="mobile">Mobile Number*</label>
+                <InputNumber id="mobile" @bind-Value="contact.Mobile" class="form-control" />
+            </div>
+           
+
+            <div class="form-group">
+                <label for="language1">Language:</label>
+
+                <input type="radio" id="language1" name="language" value="Arabic" checked @bind-Value="contact.Language" class="form-control" />
+                <label for="language1">Arabic</label> <br>
+
+                <input type="radio" id="language2" name="language" value="English" @bind-Value="contact.Language" class="form-control" />
+                <label for="language2">English</label> <br>
+            </div>
+
+            <div class="form-group">
+                <label for="gender1">Gender:</label>
+
+                <input type="radio" id="gender1" name="gender" value="Female" checked @bind-Value="contact.Gender" class="form-control" />
+                <label for="language1">Arabic</label> <br>
+            </div>
+
+            <div class="form-group">
+
+                <input type="radio" id="gender2" name="gender" value="Male" @bind-Value="contact.Gender" class="form-control" />
+                <label for="gender2">Male</label> <br>
+            </div>
+
+
+            <div class="form-group">
+                <label for="contact-type">Contact Type*</label>
+                <select @bind="contact.ContactType" id="contact-type" class="form-control">
+                    <option value="">Select a type ...</option>
+                    @foreach (var contactType in Enum.GetNames(typeof(ContactTypes)))
+                    {
+                        <option>@contactType</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department*</label>
+                <select @bind="contact.Department" id="department" class="form-control">
+                    <option value="">Select a Department ...</option>
+                    @*@foreach (var department in departments)
+                    {
+                        <option>@department</option>
+                    }*@
+                </select>
+            </div>
+
+
+
+            <div class="form-group col-md-2">
+                <label for="employeeId">Employee Id</label>
+                <InputNumber id="employeeId" @bind-Value="contact.EmployeeId" class="form-control" />
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="studentId">Student Id</label>
+                <InputNumber id="studentId" @bind-Value="contact.StudentId" class="form-control" />
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="phoneExtension">Phone Extension</label>
+                <InputNumber id="phoneExtension" @bind-Value="contact.PhoneExtention" class="form-control" />
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="officeNumber">Office Number</label>
+                <InputNumber id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
+            </div>
+
+            <fieldset>
+                <legend>Notification</legend>
+
+                <div class="form-check">
+                    <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
+                    <label class="form-check-label" for="ischecked">Accept SMS Notification</label>
+                </div>
+
+                <div class="form-check">
+                    <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
+                    <label class="form-check-label" for="ischecked">Accept Email Notification</label>
+                </div>
+
+                <div class="mt-2"></div>
+
+            </fieldset>
+
+            <div class="mt-2"></div>
+
+            <button type="submit" class="btn btn-outline-primary">Save</button>
+            <a href="Contact/List" class="btn btn-outline-secondary">Cancel</a>
+    </EditForm>
+</fieldset>
+
+
+@code {
+    Contact contact = new Contact();
+
+    // Needed for the category dropdown list
+    private List<Contact> contacts = new List<Contact>();
+
+    // Added because Inputcheckbox does not accept nullable variables
+    private bool isChecked = false;
+
+    // Check why product.categoryId does not bind
+    private string departmentId = String.Empty;
+
+    // Execute when component starts / initializes
+    protected override void OnInitialized()
+    {
+        contacts = CatService.GetContacts();
+    }
+
+    private void AddContact()
+    {
+        // Update the product properties
+        contact.IsChecked = isChecked;
+
+        // Convert categoryId from string to int
+        if (!String.IsNullOrEmpty(contactId))
+        {
+            contact.ContactId = Int32.Parse(contactId);
+        }
+
+        ProdService.AddContact(contact);
+
+        // To empty the form, find more elegant why
+        contact = new Contact();
+
+        // May navigate to the Contact /List component
+        //@inject NavigationManager NavigationManager
+        // NavigationManaget.NavigateTo("Contact/List")
+    }
+}

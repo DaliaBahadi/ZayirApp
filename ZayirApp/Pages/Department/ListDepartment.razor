@@ -1,0 +1,58 @@
+﻿@page "/Department/List"
+
+@using ZayirApp.Data;
+
+@*@inject DepartmentService Service*@
+
+<h1>Departments</h1>
+
+<a href="Department/Add">
+    <span class="oi oi-plus"></span> &nbsp;
+    Add New Department
+</a>
+
+<div class="mt-2"></div>
+
+@if (departments == null)
+{
+    <p>Loading data ...</p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in departments)
+            {
+                <tr>
+
+                    <td>@item.Name</td>
+                    <td>
+                        <a href="Department/Details/@item.DepartmentId"><span class="oi oi-list"></span></a> &nbsp;
+                        <a href="Department/Update/@item.DepartmentId"><span class="oi oi-pencil"></span></a> &nbsp;
+                        <a href="Department/Delete/@item.DepartmentId"><span class="oi oi-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    // Create a list of department to display in the component
+    List<Department> departments = new List<Department>();
+
+    // Load the list when the component initilizes
+    protected override void OnInitialized()
+    {
+        // Get the departments from the service
+        //departments = Service.GetDepartments();
+    }
+}
+

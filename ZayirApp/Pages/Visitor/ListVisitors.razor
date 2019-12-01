@@ -1,0 +1,63 @@
+﻿@page "/Visitor/List"
+@*@inject ProductService ProdService
+    @inject CategoryService CatService*@
+
+@using ZayirApp.Data;
+
+<h2>Visitors</h2>
+
+<a href="Visitor/Add">
+    <span class="oi oi-plus"></span> &nbsp;
+    Add New Visitor
+</a>
+
+<div class="mt-2"></div>
+
+@if (visitors == null)
+{
+<p>Loading data ...</p>
+}
+else
+{
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Mobile Number</th>
+            <th>Official Document (ID)</th>
+            <th>Email</th>
+            <th>Tasks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in visitors)
+        {
+        <tr>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td class="text-center">@item.Mobile</td>
+            <td class="text-center">@item.Document.DocumentNumber</td>
+            <td class="text-center">@item.Email</td>
+            <td>
+                <a href="Visitor/Details/@item.VisitorId"><span class="oi oi-list"></span></a> &nbsp;
+                <a href="Visitor/Edit/@item.VisitorId"><span class="oi oi-pencil"></span></a> &nbsp;
+                <a href="Visitor/Delete/@item.VisitorId"><span class="oi oi-trash"></span></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+@code {
+    
+    // Create a list of visitors to be displayed in the component
+    List<Visitor> visitors = new List<Visitor>();
+
+    protected override void OnInitialized()
+    {
+    // Get the visitors from the service
+    visitors = ProdService.GetVisitors();
+    }
+}

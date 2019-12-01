@@ -1,0 +1,141 @@
+﻿@page "/Visit/Edit/{Id:int}"
+@using ZayirApp.Data
+
+@*@inject NavigationManager NavigationManager
+    @inject CategoryService Service*@
+
+<h3>Edit Vist</h3>
+
+<EditForm Model="visit" OnValidSubmit="EditVisit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="SigninDateTime">Sign in Date and Time</label>
+        <input type="datetime-local" name="SigninDateTime">
+    </div>
+
+    <div class="form-group">
+        <label for="SignoutDateTime">Sign out Date and Time</label>
+        <input type="datetime-local" name="SignoutDateTime">
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="status" value="option1" checked>
+        <label class="form-check-label" for="status">
+            Confirmed
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="status2" value="option2">
+        <label class="form-check-label" for="status2">
+            Canceled
+        </label>
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="inputVisitType">Visit Type</label>
+        <select id="inputVisitType" class="form-control">
+            <option selected>---Choose---</option>
+            <option value="1">Contractor</option>
+            <option value="2">Personal</option>
+            <option value="3">Maintenance/option>
+            <option value="4">Lecturer</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="inputHost">Host</label>
+        <select id="inputHost" class="form-control">
+            <option selected>---Choose---</option>
+            <option value="1">Azzah Ghamdi</option>
+            <option value="2">Fatemah Bayomi</option>
+            <option value="3">Sanaa Askool/option>
+            <option value="4">Bayan Bin Mahfodh</option>
+            <option value="5">Dunia Mamlouk</option>
+            <option value="6">Suhair Fayez</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="validity">Validity In Days</label>
+        <InputNumber id="validity" @bind -Value="visit.Validity" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="inputEvent">Event Name</label>
+        <select id="inputEvent" class="form-control">
+            <option selected>---Choose---</option>
+            <option value="1">DAH Bazar</option>
+            <option value="2">Food Festival</option>
+            <option value="3">DAH 20th Celebration</option>
+            <option value="4">MIS </option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="inputGateNumber">Gate Number</label>
+        <select id="inputGateNumber" class="form-control">
+            <option selected>---Choose---</option>
+            <option value="1">Gate 1</option>
+            <option value="2">Gate 2</option>
+            <option value="3">Gate 3</option>
+            <option value="4">Gate 4 </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="3"></textarea>
+    </div>
+
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="agreement">
+        <label class="form-check-label" for="agreement">I agree to the Privacy Policy of the company</label>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Print Badge</button>
+        </div>
+    </div>
+
+
+    <div class="mt-2"></div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="reset" class="btn btn-primary">Cancel</button>
+
+</EditForm>
+
+
+<br />
+
+<p>@message</p>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    Visit visit = new Visit();
+
+    string message;
+
+    protected override void OnInitialized()
+    {
+        visit = Service.GetVisit(Id);
+    }
+
+    public void EditVisit()
+    {
+        // Update the category
+        Service.UpdateVisit(visit);
+
+        message = "visit edited successfully";
+        //NavigationManager.NavigateTo("Visit/List");
+    }
+}
+

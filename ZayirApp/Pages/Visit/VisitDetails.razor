@@ -1,0 +1,83 @@
+﻿@page "/Visit/Details/{Id:int}"
+@using ZayirApp.Data
+
+@inject CategoryService Service
+
+<h3>Visit Details</h3>
+
+<table>
+    <tr>
+        <td>Visit Id: </td>
+        <td>@visit.VisitId</td>
+    </tr>
+    <tr>
+        <td>Name: </td>
+        <td>@visit.Name</td>
+    </tr>
+    <tr>
+        <td>Sign-in: </td>
+        <td>@visit.Sign-in</td>
+    </tr>
+
+    <tr>
+        <td>Sign-out: </td>
+        <td>@visit.Sign-out</td>
+    </tr>
+
+    <tr>
+        <td>Status: </td>
+        <td>@visit.Status</td>
+    </tr>
+
+
+    <tr>
+        <td>Visit Type: </td>
+        <td>@visit.VisitType</td>
+    </tr>
+
+    <tr>
+        <td>Host: </td>
+        <td>@visit.Host</td>
+    </tr>
+
+    <tr>
+        <td>Validity In Days</td>
+        <td>@visit.Validity</td>
+    </tr>
+
+    <tr>
+        <td>Event Name: </td>
+        <td>@visit.Event</td>
+    </tr>
+
+    <tr>
+        <td>Gate Number: </td>
+        <td>@visit.Gate</td>
+    </tr>
+
+    <tr>
+        <td>Description: </td>
+        <td>@visit.Description</td>
+    </tr>
+
+    <tr>
+        <td>Agreement: </td>
+        <td>@visit.Agreement</td>
+    </tr>
+</table>
+
+<br />
+<a href="/Visit/List" class="btn btn-info" role="button">Cancel</a>
+
+@code {
+
+    Visit visit= new Visit();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        visit = Service.GetVisit(Id);
+    }
+}

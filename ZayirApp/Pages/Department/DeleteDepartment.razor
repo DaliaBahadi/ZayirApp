@@ -1,0 +1,50 @@
+﻿@page "/Department/Delete/{Id:int}"
+
+@using ZayirApp.Data;
+
+@*@inject NavigationManager NavigationManager
+    @inject CategoryService Service*@
+
+<h3>Delete Department</h3>
+
+<div class="alert alert-danger">
+    Do you want to delete this Department?
+</div>
+
+<table>
+    <tr>
+        <td>Name: </td>
+        <td>@department.Name</td>
+    </tr>
+
+</table>
+<br />
+
+<button type="submit" class="btn btn-outline-danger" @onclick="RemoveDepartment">Delete</button>
+
+<a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+
+<br />
+
+@code {
+
+    Department department = new Department();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private void RemoveDepartment()
+    {
+        //Service.DeleteDepartment(Id);
+
+        //NavigationManager.NavigateTo("Department/List");
+    }
+
+    protected override void OnInitialized()
+    {
+        //category = Service.GeDepartment(Id);
+    }
+
+}
+

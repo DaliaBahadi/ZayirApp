@@ -1,0 +1,43 @@
+﻿@page "/Gate/Add"
+
+@*@inject GateService Service*@
+
+<h3>Add New Gate</h3>
+<EditForm Model="gate" OnValidSubmit="AddGate">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group col-md-6">
+        <label for="name">Name*:</label>
+        <InputText id="name" @bind -Value="gate.Name" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="description">Description:</label>
+        <InputTextArea id="description" @bind -Value="gate.Description" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="evacuationDetails">Evacuation Details:</label>
+        <InputTextArea id="evacuationDetails" @bind -Value="gate.EvacuationDetails" class="form-control" />
+    </div>
+
+    <div class="custom-file col-md-6">
+        <input type="file" class="custom-file-input" id="evacuationPlanFile" @bind -Value="gate.EvacuationPlanFile">
+        <label class="custom-file-label" for="evacuationPlanFile">Choose file</label>
+    </div>
+
+
+    <button type="submit" class="" btn btn-outline-primary"">Save</button>
+    <a href="Gate/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+</EditForm>
+
+@code {
+    Gate gate = new Gate();
+
+    private void AddGate()
+    {
+        Service.AddGate(gate);
+        gate = new Gate();
+    }
+}

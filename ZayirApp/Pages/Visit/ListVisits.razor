@@ -1,0 +1,68 @@
+﻿@page "/Visits/List"
+@using ZayirApp.Data
+
+@*@inject ProductService Service*@
+
+<h1>Visits</h1>
+
+<a href="Visit/Add">
+    <span class="oi oi-plus"></span> &nbsp;
+    Add Visit
+</a>
+
+<div class="mt-2"></div>
+
+@if (visits == null)
+{
+<div class="d-flex align-items-center">
+    <strong>Loading data ...</strong>
+    <div class="spinner-border ml-auto"></div>
+</div>
+}
+else
+{
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Sign-in</th>
+            <th>Sign-out</th>
+            <th>Status</th>
+            <th>Visit Type</th>
+            <th>Host</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var visit in visits)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td class="text-center">@visit.Sign-in</td>
+            <td>@visit.Sign-out</td>
+            <td>@visit.Status</td>
+            <td>@visit.Visit Type</td>
+            <td>@visit.Host</td>
+            <td>
+                <a href="Visit/Details/@visit.VisitID"><span class="oi oi-list"></span></a> &nbsp;
+                <a href="Visit/Update/@visit.VisitID"><span class="oi oi-pencil"></span></a> &nbsp;
+                <a href="Visit/Delete/@visit.VisitID"><span class="oi oi-trash"></span></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+
+@code {
+
+    // Create a list of products to be displayed in the component
+    private List<Visit>
+    products;
+    protected override void OnInitialized()
+    {
+    // Get the products from the service
+    visits= Service.GetProducts();
+    }
+    }

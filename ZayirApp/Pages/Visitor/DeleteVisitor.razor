@@ -1,0 +1,46 @@
+﻿@page "/Visitor/Delete/{Id:int}"
+@*@inject NavigationManager NavigationManager
+    @inject CategoryService Service*@
+
+@using ZayirApp.Data;
+
+<h3>Delete Visitor</h3>
+
+<div class="alert alert-danger">
+    Do you want to delete this Visitor?
+</div>
+
+<table>
+    <tr>
+        <td>Name: </td>
+        <td>@visitor.FirstName</td>
+        <td>@visitor.LastName</td>
+    </tr>
+
+</table>
+<br />
+<button type="submit" class="" btn btn-outline-danger" @onclick="RemoveVisitor">Delete Visitor</button>
+<a href="/Visitor/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+<br />
+
+@code {
+
+    Visitor visitor = new Visitor();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private void RemoveVisitor()
+    {
+        Service.DeleteVisitor(Id);
+
+        NavigationManager.NavigateTo("Visitor/List");
+    }
+
+    protected override void OnInitialized()
+    {
+        visitor = Service.GetVisitor(Id);
+    }
+
+}

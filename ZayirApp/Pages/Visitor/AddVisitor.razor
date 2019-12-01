@@ -1,0 +1,176 @@
+﻿@page "/Visitor/Add"
+@*@inject Service CatService
+    @inject ContactService ProdService*@
+
+@using ZayirApp.Data;
+
+<h3>Visitor</h3>
+
+<fieldset>
+    <legend>Add New Visitor</legend>
+    <EditForm Model="visitor" OnValidSubmit="AddVisitor">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="first-name">First Name:*</label>
+            <InputText id="first-name" @bind-Value="visitor.FirstName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="father-name">Father Name:</label>
+            <InputText id="father-name" @bind-Value="visitor.FatherName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="grandfather-name">Grandfather Name:</label>
+            <InputText id="grandfather-name" @bind-Value="visitor.GrandfatherName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Last Name:*</label>
+            <InputText id="last-name" @bind-Value="visitor.LastName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:*</label>
+            <Input type="email" id="email" @bind-Value="visitor.Email" placeholder="tom@gmail.com" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">Mobile Number:*</label>
+            <InputNumber id="mobile" @bind-Value="visitor.Mobile" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="NationalId">National Id:*</label>
+            <InputNumber id="NationalId" @bind-Value="document.DocumentNumber" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">Date Of Birth:</label>
+            <InputDate id="birthDate" @bind-Value="visitor.BirhtDate" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="language1">Language:</label>
+
+            <input type="radio" id="language1" name="language" value="Arabic" checked @bind-Value="visitor.Language" class="form-control" />
+            <label for="language1">Arabic</label> <br>
+
+            <input type="radio" id="language2" name="language" value="English" @bind-Value="visitor.Language" class="form-control" />
+            <label for="language2">English</label> <br>
+        </div>
+
+        <div class="form-group">
+            <label for="gender1">Gender:</label>
+
+            <input type="radio" id="gender1" name="gender" value="Female" checked @bind-Value="visitor.Gender" class="form-control" />
+            <label for="language1">Arabic</label> <br>
+
+            <input type="radio" id="gender2" name="gender" value="Male" @bind-Value="visitor.Gender" class="form-control" />
+            <label for="gender2">Male</label> <br>
+        </div>
+
+        <div class="form-group">
+            <label for="jobTitle">Job Title:</label>
+            <InputText id="jobTitle" @bind-Value="visitor.JobTitle" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="company">Company:</label>
+            <InputText id="company" @bind-Value="visitor.Company" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="carLicensePlate">Car License Plate:</label>
+            <InputNumber id="carLicensePlate" @bind-Value="visitor.CarLicensePlate" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="clearanceLevel">Clearance Level:</label>
+            <select @bind-Value="visitor.ClearanceLevel" id="clearanceLevel" class="form-control">
+                <option value="">Select a Level ...</option>
+                @foreach (var clearanceLevel in Enum.GetNames(typeof(ClearanceLevel)))
+                {
+                <option>@Visitor</option>
+                }
+            </select>
+        </div>
+
+        <div class="file-field">
+            <label for="NationalIdcopy">National Id copy:</label>
+
+            <div class="file-path-wrapper">
+                <input id="NationalIdcopy" class="file-path validate" type="text" placeholder="Upload your file">
+            </div>
+
+            <div class="btn btn-primary btn-sm float-left">
+                <span>Choose file</span>
+                <input type="file">
+            </div>
+        </div>
+
+        <fieldset>
+            <legend>Notification</legend>
+
+            <div class="form-check">
+                <InputCheckbox id="ischecked" @bind-Value="visitor.AcceptSMSNotification" class="form-check-input" />
+                <label class="form-check-label" for="ischecked">Accept SMS Notification</label>
+            </div>
+
+            <div class="form-check">
+                <InputCheckbox id="ischecked" @bind-Value="visitor.AcceptEmailNotification" class="form-check-input" />
+                <label class="form-check-label" for="ischecked">Accept Email Notification</label>
+            </div>
+
+            <div class="form-check">
+                <InputCheckbox id="ischecked" @bind-Value="visit_agreement.Agreed" class="form-check-input" />
+                <label class="form-check-label" for="ischecked">I agree to the Policy of the Organization</label>
+            </div>
+
+            <div class="mt-2"></div>
+
+        </fieldset>
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+        <a href="Visitor/List" class="btn btn-outline-secondary">Cancel</a>
+    </EditForm>
+</fieldset>
+
+@code {
+
+    Visitor visitor = new Visitor();
+
+    // Added because Inputcheckbox does not accept nullable variables
+    private bool isChecked = false;
+
+    // Check why product.categoryId does not bind
+    private string categoryId = String.Empty;
+
+    // Execute when component starts / initializes
+    protected override void OnInitialized()
+    {
+        visitors = CatService.GetVisitors();
+    }
+
+    private void AddVisitor()
+    {
+        // Update the product properties
+        visitor.IsChecked = isChecked;
+
+        // Convert categoryId from string to int
+        if (!String.IsNullOrEmpty(visitorId))
+        {
+            visitor.VisitorId = Int32.Parse(visitorId);
+        }
+
+        ProdService.AddVisitor(visitor);
+
+        // To empty the form, find more elegant why
+        visitor = new Visitor();
+
+        //May navigate to the Visitor/List component
+        @*@inject NavigationManager NavigationManager*@
+        NavigationManaget.NavigateTo("Visitor/List")
+    }
+}
