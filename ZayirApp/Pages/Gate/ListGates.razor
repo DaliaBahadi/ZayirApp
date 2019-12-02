@@ -1,4 +1,4 @@
-﻿@page "/Gate/List"
+﻿@*@page "/Gate/List"
 
 @inject GateService Service
 
@@ -48,9 +48,7 @@ else
 
 @code {
     // Create a list of gates to display in the component
-    //List<Gate>
-    gates = new List<Gate>
-        ();
+   List<Gate>    gates = new List<Gate>();
         List<Gate>
             gates;
 
@@ -60,6 +58,6 @@ else
             // Get the gates from the service
             gates = Service.GetGates();
             }
-            }
+            }*@
 
 

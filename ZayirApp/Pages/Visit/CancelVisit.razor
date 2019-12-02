@@ -1,8 +1,8 @@
-﻿@page "/Visit/Cancel/{Id:int}"
+﻿@*@page "/Visit/Cancel/{Id:int}"
 @using ZayirApp.Data
 
-@*@inject NavigationManager NavigationManager
-    @inject CategoryService Service*@
+@inject NavigationManager NavigationManager
+    @inject CategoryService Service
 
 <h3>Cancel Visit</h3>
 
@@ -43,6 +43,6 @@
         visit= Service.GetVisit(Id);
     }
 
-}
+}*@
 
 

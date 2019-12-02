@@ -1,5 +1,5 @@
-﻿@page "/Visitor/Details/{Id:int}"
-@*@inject VisitorService Service*@
+﻿@*@page "/Visitor/Details/{Id:int}"
+@inject VisitorService Service
 
 @using ZayirApp.Data;
 
@@ -64,8 +64,8 @@
         <td>@visitor.ClearanceLevel</td>
     </tr>
     <tr>
-        @*<td>Add to Watch-list:</td>
-            <td>@visitor.IsBlackListed</td>*@
+        <td>Add to Watch-list:</td>
+            <td>@visitor.IsBlackListed</td>
         <Form>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="Check1">
@@ -91,4 +91,4 @@
     {
         visitor = Service.GetVisitor(Id);
     }
-}
+}*@

@@ -1,6 +1,6 @@
-﻿@page "/Visitor/List"
-@*@inject ProductService ProdService
-    @inject CategoryService CatService*@
+﻿@*@page "/Visitor/List"
+@inject ProductService ProdService
+    @inject CategoryService CatService
 
 @using ZayirApp.Data;
 
@@ -60,4 +60,4 @@ else
     // Get the visitors from the service
     visitors = ProdService.GetVisitors();
     }
-}
+}*@

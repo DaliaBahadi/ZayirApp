@@ -1,6 +1,6 @@
-﻿@page "/Visitor/Add"
-@*@inject Service CatService
-    @inject ContactService ProdService*@
+﻿@*@page "/Visitor/Add"
+@inject Service CatService
+    @inject ContactService ProdService
 
 @using ZayirApp.Data;
 
@@ -170,7 +170,7 @@
         visitor = new Visitor();
 
         //May navigate to the Visitor/List component
-        @*@inject NavigationManager NavigationManager*@
+        @inject NavigationManager NavigationManager
         NavigationManaget.NavigateTo("Visitor/List")
     }
-}
+}*@

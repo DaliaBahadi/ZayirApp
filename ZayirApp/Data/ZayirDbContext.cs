@@ -34,15 +34,27 @@ namespace ZayirApp.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ZayirDatabase;Integrated Security=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Agreement>(entity =>
+            {
+                entity.Property(e => e.Title).IsRequired();
+            });
+
             modelBuilder.Entity<Contact>(entity =>
             {
+                entity.Property(e => e.Email).IsRequired();
+
+                entity.Property(e => e.FirstName).IsRequired();
+
+                entity.Property(e => e.LastName).IsRequired();
+
+                entity.Property(e => e.Mobile).IsRequired();
+
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.Contact)
                     .HasForeignKey(d => d.DepartmentId)
@@ -71,13 +83,37 @@ namespace ZayirApp.Data
                     .HasConstraintName("FK__Delivery__Visito__3B75D760");
             });
 
+            modelBuilder.Entity<Department>(entity =>
+            {
+                entity.Property(e => e.Name).IsRequired();
+            });
+
             modelBuilder.Entity<Document>(entity =>
             {
+                entity.Property(e => e.DocumentNumber).IsRequired();
+
+                entity.Property(e => e.ExpiryDate).HasColumnType("date");
+
                 entity.HasOne(d => d.Visitor)
                     .WithMany(p => p.Document)
                     .HasForeignKey(d => d.VisitorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Document__Visito__2E1BDC42");
+            });
+
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.Property(e => e.Name).IsRequired();
+            });
+
+            modelBuilder.Entity<Gate>(entity =>
+            {
+                entity.Property(e => e.Name).IsRequired();
+            });
+
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.Property(e => e.Content).IsRequired();
             });
 
             modelBuilder.Entity<Notification>(entity =>
@@ -177,6 +213,17 @@ namespace ZayirApp.Data
                     .HasForeignKey(d => d.VisitId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__VisitAgre__Visit__48CFD27E");
+            });
+
+            modelBuilder.Entity<Visitor>(entity =>
+            {
+                entity.Property(e => e.BirthDate).HasColumnType("date");
+
+                entity.Property(e => e.FirstName).IsRequired();
+
+                entity.Property(e => e.LastName).IsRequired();
+
+                entity.Property(e => e.Mobile).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

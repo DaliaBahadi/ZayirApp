@@ -1,6 +1,6 @@
-﻿@page "/Visitor/Delete/{Id:int}"
-@*@inject NavigationManager NavigationManager
-    @inject CategoryService Service*@
+﻿@*@page "/Visitor/Delete/{Id:int}"
+@inject NavigationManager NavigationManager
+    @inject CategoryService Service
 
 @using ZayirApp.Data;
 
@@ -43,4 +43,4 @@
         visitor = Service.GetVisitor(Id);
     }
 
-}
+}*@

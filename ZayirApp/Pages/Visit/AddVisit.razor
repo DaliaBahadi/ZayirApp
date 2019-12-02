@@ -1,8 +1,8 @@
-﻿@page "/Visit/Add"
+﻿@*@page "/Visit/Add"
 @using ZayirApp.Data
 
-@*@inject CategoryService CatService
-@inject ProductService ProdService*@
+@inject CategoryService CatService
+@inject ProductService ProdService
 
 <h3>Add Visit</h3>
 
@@ -117,5 +117,5 @@
         Service.AddVisit(visit);
         visit= new Visit();
     }
-}
+}*@
 

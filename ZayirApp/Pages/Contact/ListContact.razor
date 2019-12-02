@@ -1,8 +1,8 @@
-﻿@page "/Contact/List"
+﻿@*@page "/Contact/List"
 @using ZayirApp.Data;
 
-@*@inject ProductService ProdService
-    @inject CategoryService CatService*@
+@inject ProductService ProdService
+    @inject CategoryService CatService
 
 <h1>Contacts</h1>
 
@@ -61,6 +61,6 @@ else
         // Get the contacts from the service
         //contacts = ProdService.GetContacts();
     }
-}
+}*@
 
 

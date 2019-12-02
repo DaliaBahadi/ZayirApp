@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZayirApp.Data
 {
@@ -12,12 +10,9 @@ namespace ZayirApp.Data
             Contact = new HashSet<Contact>();
         }
 
-        [Key]
         public int DepartmentId { get; set; }
-        [Required]
         public string Name { get; set; }
 
-        [InverseProperty("Department")]
         public virtual ICollection<Contact> Contact { get; set; }
     }
 }

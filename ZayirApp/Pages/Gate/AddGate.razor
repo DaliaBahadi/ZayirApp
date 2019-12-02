@@ -1,6 +1,6 @@
-﻿@page "/Gate/Add"
+﻿@*@page "/Gate/Add"
 
-@*@inject GateService Service*@
+@inject GateService Service
 
 <h3>Add New Gate</h3>
 <EditForm Model="gate" OnValidSubmit="AddGate">
@@ -40,4 +40,4 @@
         Service.AddGate(gate);
         gate = new Gate();
     }
-}
+}*@

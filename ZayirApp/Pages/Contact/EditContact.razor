@@ -1,7 +1,7 @@
-﻿@page "/Contact/Edit/{Id:int}"
+﻿@*@page "/Contact/Edit/{Id:int}"
 @using ZayirApp.Data;
-@*@inject NavigationManager NavigationManager
-    @inject CategoryService Service*@
+@inject NavigationManager NavigationManager
+    @inject CategoryService Service
 
 <h3>Edit Contact Information</h3>
 
@@ -154,6 +154,6 @@
         message = "Contact updated successfully";
         //NavigationManager.NavigateTo("Contact /List");
     }
-}
+}*@
 
 

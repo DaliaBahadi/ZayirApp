@@ -1,7 +1,7 @@
-﻿@page "/Contact/Add"
+﻿@*@page "/Contact/Add"
 
-@*@inject DepartmentService CatService
-@inject ContactService ProdService*@
+@inject DepartmentService CatService
+@inject ContactService ProdService
 @using ZayirApp.Data;
 
 <h3>Add New Contact</h3>
@@ -73,10 +73,10 @@
                 <label for="department">Department*</label>
                 <select @bind="contact.Department" id="department" class="form-control">
                     <option value="">Select a Department ...</option>
-                    @*@foreach (var department in departments)
+                    @foreach (var department in departments)
                     {
                         <option>@department</option>
-                    }*@
+                    }
                 </select>
             </div>
 
@@ -165,4 +165,4 @@
         //@inject NavigationManager NavigationManager
         // NavigationManaget.NavigateTo("Contact/List")
     }
-}
+}*@
