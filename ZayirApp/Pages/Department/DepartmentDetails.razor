@@ -1,15 +1,11 @@
-﻿@*@page "/Department/Details/{Id:int}"
+﻿@page "/Department/Details/{Id:int}"
 @using ZayirApp.Data;
 
-@inject DepartmentService Service
+@inject DepartmentService DepService
 
 <h3>Department Details</h3>
 
 <table>
-    <tr>
-
-        <td>@department.Id</td>
-    </tr>
     <tr>
         <td>Name: </td>
         <td>@department.Name</td>
@@ -28,7 +24,7 @@
 
     protected override void OnInitialized()
     {
-        //department = Service.GetDepartment(Id);
+        department = DepService.GetDepartment(Id);
     }
-}*@
+}
 

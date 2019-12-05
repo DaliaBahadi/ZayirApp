@@ -1,20 +1,14 @@
 ﻿
-@*@page "/Department/Ad"
+@page "/Department/Add"
 
 @using ZayirApp.Data;
 
-@inject DepartmentService Service
-
-
-
-
-
-
+@inject DepartmentService DepService
 
 <h3>Add New Department</h3>
 
 
-<EditForm Model="department" OnValidSubmit="AddDepartment">
+<EditForm Model="department" OnValidSubmit="AddDepartment1">
 
 
     <DataAnnotationsValidator />
@@ -54,26 +48,13 @@
 
 @code {
 
-
     Department department = new Department();
 
-
-
-
-
-
-    private void AddDepartment()
-
-
+    private void AddDepartment1()
     {
+        DepService.AddDepartment(department);
 
-
-        //Service.AddDepartment(department);
-
-
-        Department department = new Department();
-
-
+         department = new Department();
     }
-}*@
+}
 

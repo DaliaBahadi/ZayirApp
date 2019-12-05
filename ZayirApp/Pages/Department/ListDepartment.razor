@@ -1,8 +1,8 @@
-﻿@*@page "/Department/List"
+﻿@page "/Department/List"
 
 @using ZayirApp.Data;
 
-@inject DepartmentService Service
+@inject DepartmentService DepService
 
 <h1>Departments</h1>
 
@@ -35,7 +35,7 @@ else
                     <td>@item.Name</td>
                     <td>
                         <a href="Department/Details/@item.DepartmentId"><span class="oi oi-list"></span></a> &nbsp;
-                        <a href="Department/Update/@item.DepartmentId"><span class="oi oi-pencil"></span></a> &nbsp;
+                        <a href="Department/Edit/@item.DepartmentId"><span class="oi oi-pencil"></span></a> &nbsp;
                         <a href="Department/Delete/@item.DepartmentId"><span class="oi oi-trash"></span></a>
                     </td>
                 </tr>
@@ -52,7 +52,7 @@ else
     protected override void OnInitialized()
     {
         // Get the departments from the service
-        //departments = Service.GetDepartments();
+        departments = DepService.GetDepartments();
     }
-}*@
+}
 

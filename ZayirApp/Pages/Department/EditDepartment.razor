@@ -1,166 +1,60 @@
 ﻿
-@*@page "/Department/Edit/{Id:int}"
+@page "/Department/Edit/{Id:int}"
 
 @using ZayirApp.Data;
 
-
-
 @inject NavigationManager NavigationManager
 
-
-@inject CategoryService Service
-
-
-
-
-
-
+@inject DepartmentService DepService
 
 <h3>Edit Department Information</h3>
 
-
-
-
-
-
-
-<EditForm Model="department" OnValidSubmit="EditDepartment">
-
-
+<EditForm Model="department" OnValidSubmit="EditDepartment1">
     <DataAnnotationsValidator />
-
-
     <ValidationSummary />
 
-
-
-
-
-
-
     <div class="form-group">
-
-
+        
         <label for="name">Name*</label>
-
 
         <InputText id="name" @bind-Value="department.Name" class="form-control" />
 
-
     </div>
-
-
-
-
-
-
 
     <button type="submit" class="btn btn-outline-primary">Save</button>
 
-
-
     <a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
-
 
 </EditForm>
 
-
-
-
-
-
-
 <br />
-
-
-
-
-
-
 
 <p>@message</p>
 
-
-
-
-
-
 @code {
-
-
-
-
-
-
 
     [Parameter]
 
-
     public int Id { get; set; }
-
-
-
-
-
-
 
     Department department = new Department();
 
-
-
-
-
-
-
     string message;
 
-
-
-
-
-
-
     protected override void OnInitialized()
-
-
     {
-
-
-        //department = Service.GetDepartment(Id);
-
-
+        department = DepService.GetDepartment(Id);
     }
 
-
-
-
-
-
-    public void EditDepartment()
-
-
+    public void EditDepartment1()
     {
-
-
         // Edit the Department
 
-
-        //Service.EditDepartment(department);
-
-
-
-
-
-
+        DepService.EditDepartment(department);
 
         message = "Department edited successfully";
 
-
-        //NavigationManager.NavigateTo("Department/List");
-
+        NavigationManager.NavigateTo("Department/List");
 
     }
-
-
-}*@
-
+}

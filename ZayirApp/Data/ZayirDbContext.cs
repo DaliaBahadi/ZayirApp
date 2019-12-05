@@ -30,13 +30,13 @@ namespace ZayirApp.Data
         public virtual DbSet<VisitAgreement> VisitAgreement { get; set; }
         public virtual DbSet<Visitor> Visitor { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ZayirDatabase;Integrated Security=True");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ZayirDatabase;Integrated Security=True");
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

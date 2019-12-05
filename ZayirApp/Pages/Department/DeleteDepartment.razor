@@ -1,9 +1,9 @@
-﻿@*@page "/Department/Delete/{Id:int}"
+﻿@page "/Department/Delete/{Id:int}"
 
 @using ZayirApp.Data;
 
 @inject NavigationManager NavigationManager
-    @inject CategoryService Service
+    @inject DepartmentService DepService
 
 <h3>Delete Department</h3>
 
@@ -36,15 +36,15 @@
 
     private void RemoveDepartment()
     {
-        //Service.DeleteDepartment(Id);
+        DepService.DeleteDepartment(Id);
 
-        //NavigationManager.NavigateTo("Department/List");
+        NavigationManager.NavigateTo("Department/List");
     }
 
     protected override void OnInitialized()
     {
-        //category = Service.GeDepartment(Id);
+        department = DepService.GetDepartment(Id);
     }
 
-}*@
+}
 

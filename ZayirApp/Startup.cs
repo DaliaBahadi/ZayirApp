@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ZayirApp.Data;
+using ZayirApp.Services;
 
 namespace ZayirApp
 {
@@ -29,6 +31,25 @@ namespace ZayirApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            services.AddDbContext<ZayirDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<DepartmentService>();
+            services.AddScoped<AgreementService>();
+            services.AddScoped<VisitAgreementService>();
+            services.AddScoped<RegistrationService>();
+            services.AddScoped<EventService>();
+            services.AddScoped<NotificationService>();
+            services.AddScoped<MessageService>();
+            services.AddScoped<DocumentService>();
+            services.AddScoped<DeliveryService>();
+            services.AddScoped<BadgeService>();
+            services.AddScoped<GateService>();
+            services.AddScoped<VisitService>();
+            services.AddScoped<VisitorService>();
+            services.AddScoped<ContactService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
