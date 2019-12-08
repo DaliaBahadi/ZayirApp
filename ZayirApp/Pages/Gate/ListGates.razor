@@ -1,10 +1,10 @@
-﻿@*@page "/Gate/List"
+﻿@page "/Gate/List"
 
-@inject GateService Service
+@inject GateService GService
 
 <h1>Gates</h1>
 
-<a href="Category/Add">
+<a href="Gate/Add">
     <span class="oi oi-plus"></span> &nbsp;
     Add New gate
 </a>
@@ -37,8 +37,8 @@ else
             <td>@item.EvacuationPlanFile</td>
             <td>
                 <a href="Gate/Details/@item.GateId"><span class="oi oi-list"></span></a> &nbsp;
-                <a href="Category/Edit/@item.GateId"><span class="oi oi-pencil"></span></a> &nbsp;
-                <a href="Category/Delete/@item.GateId"><span class="oi oi-trash"></span></a>
+                <a href="Gate/Edit/@item.GateId"><span class="oi oi-pencil"></span></a> &nbsp;
+                <a href="Gate/Delete/@item.GateId"><span class="oi oi-trash"></span></a>
             </td>
         </tr>
         }
@@ -47,17 +47,13 @@ else
 }
 
 @code {
-    // Create a list of gates to display in the component
-   List<Gate>    gates = new List<Gate>();
-        List<Gate>
-            gates;
+        // Create a list of gates to display in the component
+        List<Gate> gates = new List<Gate>();
 
-            // Load the list when the component initilizes
-            protected override void OnInitialized()
-            {
-            // Get the gates from the service
-            gates = Service.GetGates();
-            }
-            }*@
-
-
+    // Load the list when the component initilizes
+    protected override void OnInitialized()
+    {
+        // Get the gates from the service
+        gates = GService.GetGates();
+    }
+}

@@ -39,4 +39,11 @@ namespace ZayirApp.Data
         public virtual ICollection<Visit> VisitContact { get; set; }
         public virtual ICollection<Visit> VisitRegistrar { get; set; }
     }
+
+    public enum Gender
+    {
+        Female = 1,
+
+        Male
+    }
 }

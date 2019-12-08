@@ -1,6 +1,6 @@
-﻿@*@page "/Gate/Details/{Id:int}"
+﻿@page "/Gate/Details/{Id:int}"
 
-@inject GateService Service
+@inject GateService GService
 
 <h3>Gate Details</h3>
 
@@ -8,22 +8,22 @@
 
     <tr>
         <td>Name: </td>
-        <td>@Gate.Name</td>
+        <td>@gate.Name</td>
     </tr>
 
     <tr>
         <td>Description: </td>
-        <td>@Gate.Description</td>
+        <td>@gate.Description</td>
     </tr>
 
     <tr>
         <td>Evacuation Details: </td>
-        <td>@Gate.EvacuationDetails</td>
+        <td>@gate.EvacuationDetails</td>
     </tr>
 
     <tr>
         <td>Evacuation Plan File: </td>
-        <td>@Gate.EvacuationPlanFile</td>
+        <td>@gate.EvacuationPlanFile</td>
     </tr>
 
 </table>
@@ -40,8 +40,8 @@
 
     protected override void OnInitialized()
     {
-        gate = Service.GetGate(Id);
+        gate = GService.GetGate(Id);
     }
-}*@
+}
 
 

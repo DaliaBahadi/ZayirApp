@@ -1,7 +1,7 @@
-﻿@*@page "/Gate/Delete/{Id:int}"
+﻿@page "/Gate/Delete/{Id:int}"
 
 @inject NavigationManager NavigationManager
-@inject GateService Service
+@inject GateService GService
 
 <h3>Delete Gate</h3>
 
@@ -17,7 +17,7 @@
 
 </table>
 <br />
-<button type="submit" class="btn btn-outline-danger" @onclick="RemoveGate">Delete Gate</button>
+<button type="submit" class="btn btn-outline-danger" @onclick="DeleteGate1">Delete Gate</button>
 <a href="/Gate/List" class="btn btn-outline-secondary" role="button">Cancel</a>
 
 <br />
@@ -29,16 +29,16 @@
     [Parameter]
     public int Id { get; set; }
 
-    private void RemoveGate()
+    private void DeleteGate1()
     {
-        Service.DeleteGate(Id);
+        GService.DeleteGate(Id);
 
         NavigationManager.NavigateTo("Gate/List");
     }
 
     protected override void OnInitialized()
     {
-        gate = Service.GetGate(Id);
+        gate = GService.GetGate(Id);
     }
 
-}*@
+}

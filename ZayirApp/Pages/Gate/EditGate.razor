@@ -1,35 +1,35 @@
-﻿@*@page "/Gate/Edit/{Id:int}"
+﻿@page "/Gate/Edit/{Id:int}"
 @inject NavigationManager NavigationManager
-@inject GateService Service
+@inject GateService GService
 
 <h3>Edit Gate Information</h3>
 
-<EditForm Model="gate" OnValidSubmit="EditGate">
+<EditForm Model="gate" OnValidSubmit="EditGate1">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="form-group col-md-6">
         <label for="name">Name*:</label>
-        <InputText id="name" @bind -Value="gate.Name" class="form-control" />
+        <InputText id="name" @bind-Value="gate.Name" class="form-control" />
     </div>
 
     <div class="form-group col-md-6">
         <label for="description">Description:</label>
-        <InputTextArea id="description" @bind -Value="gate.Description" class="form-control" />
+        <InputTextArea id="description" @bind-Value="gate.Description" class="form-control" />
     </div>
 
     <div class="form-group col-md-6">
         <label for="evacuationDetails">Evacuation Details:</label>
-        <InputTextArea id="evacuationDetails" @bind -Value="gate.EvacuationDetails" class="form-control" />
+        <InputTextArea id="evacuationDetails" @bind-Value="gate.EvacuationDetails" class="form-control" />
     </div>
 
-    <div class="custom-file col-md-6">
-        <input type="file" class="custom-file-input" id="evacuationPlanFile" @bind -Value="gate.EvacuationPlanFile">
+    @*<div class="custom-file col-md-6">
+        <input type="file" class="custom-file-input" id="evacuationPlanFile" @bind-Value="gate.EvacuationPlanFile">
         <label class="custom-file-label" for="evacuationPlanFile">Choose file</label>
-    </div>
+    </div>*@
 
 
-    <button type="submit" class="" btn btn-outline-primary"">Save</button>
+    <button type="submit" class=" btn btn-outline-primary">Save</button>
     <a href="Gate/List" class="btn btn-outline-secondary" role="button">Cancel</a>
 </EditForm>
 
@@ -48,15 +48,15 @@
 
     protected override void OnInitialized()
     {
-        gate = Service.GetGate(Id);
+        gate = GService.GetGate(Id);
     }
 
-    public void EditGate()
+    public void EditGate1()
     {
         // Update the Gate
-        Service.UpdateGate(gate);
+        GService.EditGate(gate);
 
         message = "Gate Edited successfully";
-        //NavigationManager.NavigateTo("Gate/List");
+        NavigationManager.NavigateTo("Gate/List");
     }
-}*@
+}

@@ -1,8 +1,8 @@
-﻿@*@page "/Contact/Delete/{Id:int}"
+﻿@page "/Contact/Delete/{Id:int}"
 @using ZayirApp.Data;
 
 @inject NavigationManager NavigationManager
-    @inject CategoryService Service
+    @inject ContactService ContService
 
 <h3>Delete Contact</h3>
 
@@ -33,15 +33,15 @@
 
     private void RemoveContact()
     {
-        Service.DeleteContact(Id);
+        ContService.DeleteContact(Id);
 
         NavigationManager.NavigateTo("Contact/List");
     }
 
     protected override void OnInitialized()
     {
-        contact = Service.GetContact(Id);
+        contact = ContService.GetContact(Id);
     }
 
-}*@
+}
 

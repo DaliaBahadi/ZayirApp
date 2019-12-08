@@ -1,8 +1,8 @@
-﻿@*@page "/Contact/List"
+﻿@page "/Contact/List"
 @using ZayirApp.Data;
 
-@inject ProductService ProdService
-    @inject CategoryService CatService
+@inject ContactService ContService
+    @inject DepartmentService DepService
 
 <h1>Contacts</h1>
 
@@ -59,8 +59,8 @@ else
     protected override void OnInitialized()
     {
         // Get the contacts from the service
-        //contacts = ProdService.GetContacts();
+        contacts = ContService.GetContacts();
     }
-}*@
+}
 
 

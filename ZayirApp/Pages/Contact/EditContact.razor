@@ -1,7 +1,7 @@
 ﻿@*@page "/Contact/Edit/{Id:int}"
 @using ZayirApp.Data;
 @inject NavigationManager NavigationManager
-    @inject CategoryService Service
+    @inject ContactService ContService
 
 <h3>Edit Contact Information</h3>
 
@@ -16,19 +16,17 @@
             <InputText id="first-name" @bind-Value="contact.FirstName" class="form-control" />
         </div>
 
-        <div class="form-group col-md-6">
-            <label for="father-name">Father Name</label>
-            <InputText id="father-name" @bind-Value="contact.FatherName" class="form-control" />
-        </div>
-
+       
         <div class="form-group col-md-6">
             <label for="last-name">Last Name*</label>
             <InputText id="last-name" @bind-Value="contact.LastName" class="form-control" />
         </div>
 
-        <div class="form-group col-md-6">
-            <label for="email">Email*</label>
-            <Input type=”email” id="email" @bind-Value="contact.Email" class="form-control" placeholder="tom@gmail.com" />
+        <div class="form-group">
+            <label for="email" class="control-label">Email: </label>
+            <InputText id="email" @bind-value="contact.Email" class="form-control" placeholder="sam@example.com" />
+            <ValidationMessage For="@(() => contact.Email)" />
+        </div>
 
             <div class="form-group col-md-6">
                 <label for="mobile">Mobile Number*</label>
@@ -143,13 +141,13 @@
 
     protected override void OnInitialized()
     {
-        contact = Service.GetCategory(Id);
+        contact = ContService.GetDepartment(Id);
     }
 
     public void EditContact()
     {
         // Edit contact
-        Service.UpdateContact(contact);
+        ContService.EditContact(contact);
 
         message = "Contact updated successfully";
         //NavigationManager.NavigateTo("Contact /List");
