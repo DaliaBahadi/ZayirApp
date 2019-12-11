@@ -1,4 +1,5 @@
 ﻿@page "/Department/Details/{Id:int}"
+
 @using ZayirApp.Data;
 
 @inject DepartmentService DepService
@@ -27,4 +28,3 @@
         department = DepService.GetDepartment(Id);
     }
 }
-

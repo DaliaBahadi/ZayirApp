@@ -46,4 +46,9 @@ namespace ZayirApp.Data
 
         Male
     }
+
+    public enum ContactTypes
+    {
+        Staff =1, Student, Faculty
+    }
 }

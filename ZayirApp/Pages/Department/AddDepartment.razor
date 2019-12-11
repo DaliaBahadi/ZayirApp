@@ -1,5 +1,4 @@
-﻿
-@page "/Department/Add"
+﻿@page "/Department/Add"
 
 @using ZayirApp.Data;
 
@@ -7,44 +6,22 @@
 
 <h3>Add New Department</h3>
 
-
 <EditForm Model="department" OnValidSubmit="AddDepartment1">
-
-
     <DataAnnotationsValidator />
-
-
     <ValidationSummary />
 
-
-
-
     <div class="form-group">
-
-
+        
         <label for="name">Name*</label>
-
 
         <InputText id="name" @bind-Value="department.Name" class="form-control" />
 
-
     </div>
 
-
-
     <button type="submit" class="btn btn-outline-primary">Save</button>
-
-
-
     <a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
 
-
 </EditForm>
-
-
-
-
-
 
 @code {
 
@@ -57,4 +34,3 @@
          department = new Department();
     }
 }
-

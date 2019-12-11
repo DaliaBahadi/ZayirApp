@@ -1,7 +1,7 @@
-﻿@page "/Visit/Add"
+﻿@*@page "/Visit/Add"
 @using ZayirApp.Data
 
-@inject CategoryService CatService
+@inject VisitService VisitService
 @inject ProductService ProdService
 
 <h3>Add Visit</h3>
@@ -39,7 +39,7 @@
             <option selected>---Choose---</option>
             <option value="1">Contractor</option>
             <option value="2">Personal</option>
-            <option value="3">Maintenance/option>
+            <option value="3">Maintenance</option>
             <option value="4">Lecturer</option>
         </select>
     </div>
@@ -50,7 +50,7 @@
             <option selected>---Choose---</option>
             <option value="1">Azzah Ghamdi</option>
             <option value="2">Fatemah Bayomi</option>
-            <option value="3">Sanaa Askool/option>
+            <option value="3">Sanaa Askool</option>
             <option value="4">Bayan Bin Mahfodh</option>
             <option value="5">Dunia Mamlouk</option>
             <option value="6">Suhair Fayez</option>
@@ -59,7 +59,7 @@
 
     <div class="form-group">
         <label for="validity">Validity In Days</label>
-        <InputNumber id="validity" @bind-Value="visit.Validity" class="form-control" />
+        <InputNumber id="validity" @bind-Value="visit.ValidityInDays" class="form-control" />
     </div>
 
     <div class="form-group col-md-4">
@@ -114,8 +114,8 @@
 
     private void AddVisit()
     {
-        Service.AddVisit(visit);
+        //VisitService.AddVisit(visit);
         visit= new Visit();
     }
-}
+}*@
 

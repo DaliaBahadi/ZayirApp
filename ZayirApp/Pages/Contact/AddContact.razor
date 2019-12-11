@@ -1,7 +1,8 @@
-﻿@*@page "/Contact/Add"
+﻿@page "/Contact/Add"
 
 @inject DepartmentService DepService
 @inject ContactService ContService
+@inject NavigationManager NavigationManager
 
 @using ZayirApp.Data;
 
@@ -9,7 +10,7 @@
 
 <fieldset>
     <legend>Add Contact</legend>
-    <EditForm Model="contact" OnValidSubmit="AddContact">
+    <EditForm Model="contact" OnValidSubmit="CreateContact">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -76,7 +77,7 @@
             </select>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label for="department">Department*</label>
             <select @bind="contact.Department" id="department" class="form-control">
                 <option value="">Select a Department ...</option>
@@ -85,7 +86,7 @@
                     <option>@department</option>
                 }
             </select>
-        </div>
+        </div>*@
 
         <div class="form-group col-md-2">
             <label for="employeeId">Employee Id</label>
@@ -144,10 +145,14 @@
     // Check why product.categoryId does not bind
     private string departmentId = String.Empty;
 
+    private List<Department> departments = new List<Department>();
+    //private int contactId;
+
     // Execute when component starts / initializes
     protected override void OnInitialized()
     {
-        contacts = DepService.GetContact();
+        contacts = ContService.GetContacts();
+        departments = DepService.GetDepartments();
     }
 
     // Used to handle customer gender using radio buttons
@@ -158,48 +163,31 @@
         Enum.TryParse(args.Value.ToString(), out gender);
     }
 
-    private void AddContact()
+    private void SelectLanguage()
+    {
+
+    }
+
+    private void CreateContact()
     {
         // Update the customer gender
-        contact.Gender = gender;
+        contact.Gender = (int?) gender;
 
         // Update the product properties
-        contact.IsChecked = isChecked;
+        //contact = isChecked;
 
         // Convert categoryId from string to int
-        if (!String.IsNullOrEmpty(contactId))
-        {
-            contact.ContactId = Int32.Parse(contactId);
-        }
+        //if (!String.IsNullOrEmpty(contactId))
+        //{
+        //    contact.ContactId = Int32.Parse(contactId);
+        //}
 
-        ContService.AddContact(contact);
+        ContService.AddNewContact(contact);
 
         // To empty the form, find more elegant why
         contact = new Contact();
 
         // May navigate to the Contact /List component
-        @inject NavigationManager NavigationManager
-        NavigationManaget.NavigateTo("Contact/List")
+        NavigationManager.NavigateTo("Contact/List");
     }
-
-
-        Contact contact = new Contact();
-
-    // Used to handle customer gender using radio buttons
-    Gender gender = Gender.Female;
-
-    void SelectGender(ChangeEventArgs args)
-    {
-        Enum.TryParse(args.Value.ToString(), out gender);
-    }
-
-    private void AddContact()
-    {
-        // Update the customer gender
-        contact.Gender = gender;
-
-        ContService.AddContact(contact);
-
-        contact = new Contact();
-    }
-}*@
+}
