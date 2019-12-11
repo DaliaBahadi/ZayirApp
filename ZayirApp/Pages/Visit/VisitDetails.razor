@@ -1,7 +1,7 @@
-﻿@*@page "/Visit/Details/{Id:int}"
+﻿@page "/Visit/Details/{Id:int}"
 @using ZayirApp.Data
 
-@inject CategoryService Service
+@inject VisitService VisitService
 
 <h3>Visit Details</h3>
 
@@ -10,18 +10,18 @@
         <td>Visit Id: </td>
         <td>@visit.VisitId</td>
     </tr>
-    <tr>
+    @*<tr>
         <td>Name: </td>
-        <td>@visit.Name</td>
-    </tr>
+        <td>@visit.Na</td>
+    </tr>*@
     <tr>
         <td>Sign-in: </td>
-        <td>@visit.Sign-in</td>
+        <td>@visit.SignInDateTime.</td>
     </tr>
 
     <tr>
         <td>Sign-out: </td>
-        <td>@visit.Sign-out</td>
+        <td>@visit.SignOutDateTime</td>
     </tr>
 
     <tr>
@@ -36,13 +36,13 @@
     </tr>
 
     <tr>
-        <td>Host: </td>
-        <td>@visit.Host</td>
+        <td>Contact: </td>
+        <td>@visit.Contact</td>
     </tr>
 
     <tr>
         <td>Validity In Days</td>
-        <td>@visit.Validity</td>
+        <td>@visit.ValidityInDays</td>
     </tr>
 
     <tr>
@@ -62,12 +62,12 @@
 
     <tr>
         <td>Agreement: </td>
-        <td>@visit.Agreement</td>
+        <td>@visit.VisitAgreement.</td>
     </tr>
 </table>
 
 <br />
-<a href="/Visit/List" class="btn btn-info" role="button">Cancel</a>
+<a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
 
 @code {
 
@@ -78,6 +78,6 @@
 
     protected override void OnInitialized()
     {
-        visit = Service.GetVisit(Id);
+        visit = VisitService.GetVisit(Id);
     }
-}*@
+}

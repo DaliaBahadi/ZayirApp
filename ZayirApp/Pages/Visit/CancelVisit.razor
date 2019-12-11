@@ -1,8 +1,8 @@
-﻿@*@page "/Visit/Cancel/{Id:int}"
+﻿@page "/Visit/Cancel/{Id:int}"
 @using ZayirApp.Data
 
 @inject NavigationManager NavigationManager
-    @inject CategoryService Service
+@inject VisitService VisitService
 
 <h3>Cancel Visit</h3>
 
@@ -12,37 +12,39 @@
 
 <table>
     <tr>
-        <td>Name:</td>
-        <td>@visit.Name</td>
+        <th>Visitor Name:</th>
+        <td>@visit.Visitor.FirstName</td>
+        <td>@visit.Visitor.LastName</td>
+        <th>Visit Date:</th>
+        <td>@visit.SignInDateTime</td>
+        
 
     </tr>
 
 </table>
 <br />
-<button type="submit" class="btn btn-outline-danger" @onclick="CancelVisit">Cancel Visit</button>
+<button type="submit" class="btn btn-outline-danger" @onclick="RemoveVisit">Remove Visit</button>
 <a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
 
 <br />
 
 @code {
 
-    Visit visit = new visit();
+    Visit visit = new Visit();
 
     [Parameter]
     public int Id { get; set; }
 
-    private void CancelVisit()
+    private void RemoveVisit()
     {
-        Service.Deletevisit(Id);
+        VisitService.DeleteVisit(Id);
 
         NavigationManager.NavigateTo("Visit/List");
     }
 
     protected override void OnInitialized()
     {
-        visit= Service.GetVisit(Id);
+        visit= VisitService.GetVisit(Id);
     }
 
-}*@
-
-
+}
