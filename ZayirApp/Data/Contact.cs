@@ -29,7 +29,7 @@ namespace ZayirApp.Data
         public int? EmployeeId { get; set; }
         public string PhoneExtention { get; set; }
         public string OfficeNumber { get; set; }
-        public ContactTypes ContactType { get; set; }
+        public ContactType ContactType { get; set; }
 
         public virtual Department Department { get; set; }
         public virtual ICollection<Delivery> DeliveryContact { get; set; }
@@ -50,7 +50,7 @@ namespace ZayirApp.Data
         Arabic = 1, English
     }
 
-    public enum ContactTypes
+    public enum ContactType
     {
         Staff =1, Student, Faculty
     }

@@ -28,7 +28,7 @@ namespace ZayirApp.Services
                 return db.Contact.SingleOrDefault(c => c.ContactId == id);
             }
 
-            public bool AddNewContact(Contact contact)
+            public bool AddContact(Contact contact)
             {
                 if (contact != null)
                 {
