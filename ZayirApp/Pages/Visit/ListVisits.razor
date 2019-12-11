@@ -1,7 +1,7 @@
-﻿@*@page "/Visits/List"
+﻿@page "/Visit/List"
 @using ZayirApp.Data
 
-@inject ProductService Service
+@inject VisitService VisitService
 
 <h1>Visits</h1>
 
@@ -34,19 +34,19 @@ else
     </thead>
     <tbody>
 
-        @foreach (var visit in visits)
+        @foreach (var item in visits)
         {
         <tr>
-            <td>@item.Name</td>
-            <td class="text-center">@visit.Sign-in</td>
-            <td>@visit.Sign-out</td>
-            <td>@visit.Status</td>
-            <td>@visit.Visit Type</td>
-            <td>@visit.Host</td>
+            @*<td>@visit.Name</td>*@
+            <td class="text-center">@item.SignInDateTime.</td>
+            <td>@item.SignOutDateTime</td>
+            <td>@item.Status</td>
+            <td>@item.VisitType</td>
+            <td>@item.Contact</td>
             <td>
-                <a href="Visit/Details/@visit.VisitID"><span class="oi oi-list"></span></a> &nbsp;
-                <a href="Visit/Update/@visit.VisitID"><span class="oi oi-pencil"></span></a> &nbsp;
-                <a href="Visit/Delete/@visit.VisitID"><span class="oi oi-trash"></span></a>
+                <a href="Visit/Details/@item.VisitId"><span class="oi oi-list"></span></a> &nbsp;
+                <a href="Visit/Edit/@item.VisitId"><span class="oi oi-pencil"></span></a> &nbsp;
+                <a href="Visit/Cancel/@item.VisitId"><span class="oi oi-trash"></span></a>
             </td>
         </tr>
         }
@@ -57,12 +57,13 @@ else
 
 @code {
 
-    // Create a list of products to be displayed in the component
-    private List<Visit>
-    products;
+    // Create a list of visits to be displayed in the component
+    
+    List<Visit> visits;
+    
     protected override void OnInitialized()
     {
-    // Get the products from the service
-    visits= Service.GetProducts();
+    // Get the Visit from the service
+    visits= VisitService.GetVisits();
     }
-    }*@
+    }
