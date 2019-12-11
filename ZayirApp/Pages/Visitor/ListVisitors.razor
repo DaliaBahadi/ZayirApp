@@ -1,7 +1,7 @@
-﻿@*@page "/Visitor/List"
-@inject ProductService ProdService
-    @inject CategoryService CatService
+﻿@page "/Visitor/List"
 
+@inject VisitorService Visitor1Service
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 @using ZayirApp.Data;
 
 <h2>Visitors</h2>
@@ -25,7 +25,7 @@ else
             <th>First Name</th>
             <th>Last Name</th>
             <th>Mobile Number</th>
-            <th>Official Document (ID)</th>
+            @*<th>Official Document (ID)</th>*@
             <th>Email</th>
             <th>Tasks</th>
         </tr>
@@ -37,7 +37,7 @@ else
             <td>@item.FirstName</td>
             <td>@item.LastName</td>
             <td class="text-center">@item.Mobile</td>
-            <td class="text-center">@item.Document.DocumentNumber</td>
+            @*<td class="text-center">@item.Document.documentNumber</td>*@
             <td class="text-center">@item.Email</td>
             <td>
                 <a href="Visitor/Details/@item.VisitorId"><span class="oi oi-list"></span></a> &nbsp;
@@ -58,6 +58,6 @@ else
     protected override void OnInitialized()
     {
     // Get the visitors from the service
-    visitors = ProdService.GetVisitors();
+    visitors = Visitor1Service.GetVisitors();
     }
-}*@
+}

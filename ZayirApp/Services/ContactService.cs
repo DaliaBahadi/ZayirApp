@@ -9,8 +9,6 @@ namespace ZayirApp.Services
 {
     public class ContactService
     {
-
-        
             // Instance of the db context
             private readonly ZayirDbContext db;
 
@@ -60,6 +58,3 @@ namespace ZayirApp.Services
             }
         }
     }
-
-
-

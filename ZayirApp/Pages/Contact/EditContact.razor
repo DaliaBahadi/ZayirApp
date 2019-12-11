@@ -1,13 +1,15 @@
 ﻿@*@page "/Contact/Edit/{Id:int}"
+
 @using ZayirApp.Data;
+
 @inject NavigationManager NavigationManager
-    @inject ContactService ContService
+@inject ContactService ContService
 
 <h3>Edit Contact Information</h3>
 
 <fieldset>
     <legend>Edit Contact</legend>
-    <EditForm Model="contact" OnValidSubmit="EditContact">
+    <EditForm Model="contact" OnValidSubmit="UpdateContact">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -16,7 +18,7 @@
             <InputText id="first-name" @bind-Value="contact.FirstName" class="form-control" />
         </div>
 
-       
+
         <div class="form-group col-md-6">
             <label for="last-name">Last Name*</label>
             <InputText id="last-name" @bind-Value="contact.LastName" class="form-control" />
@@ -28,103 +30,106 @@
             <ValidationMessage For="@(() => contact.Email)" />
         </div>
 
-            <div class="form-group col-md-6">
-                <label for="mobile">Mobile Number*</label>
-                <InputNumber id="mobile" @bind-Value="contact.Mobile" class="form-control" />
+        <div class="form-group col-md-6">
+            <label for="mobile">Mobile Number*</label>
+            <InputNumber id="mobile" @bind-Value="contact.Mobile" class="form-control" />
+        </div>
+
+        <label class="mr-2">Language: </label>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="arabic" name="language" value="Female" @onchange="SelectLanguage" checked />
+            <label class="form-check-label" for="arabic">
+                Arabic
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="english" name="language" value="Male" @onchange="SelectLanguage" />
+            <label class="form-check-label" for="english">
+                English
+            </label>
+        </div>
+
+        <label class="mr-2">Gender: </label>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" checked />
+            <label class="form-check-label" for="female">
+                Female
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
+            <label class="form-check-label" for="male">
+                Male
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="contact-type">Contact Type:*</label>
+            <select @bind="contact.ContactType" id="contact-type" class="form-control">
+                <option value="">Select a type ...</option>
+                @foreach (var contactType in Enum.GetNames(typeof(ContactTypes)))
+                {
+                    <option>@contactType</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department*</label>
+            <select @bind="contact.Department" id="department" class="form-control">
+                <option value="">Select a Department ...</option>
+                @foreach (var department in departments)
+                {
+                    <option>@department</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="employeeId">Employee Id</label>
+            <InputNumber id="employeeId" @bind-Value="contact.EmployeeId" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="studentId">Student Id</label>
+            <InputNumber id="studentId" @bind-Value="contact.StudentId" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="phoneExtension">Phone Extension</label>
+            <InputNumber id="phoneExtension" @bind-Value="contact.PhoneExtention" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="officeNumber">Office Number</label>
+            <InputNumber id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
+        </div>
+
+        <fieldset>
+            <legend>Notification</legend>
+
+            <div class="form-check">
+                <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
+                <label class="form-check-label" for="ischecked">Accept SMS Notification</label>
             </div>
 
-            <div class="form-group">
-                <label for="language1">Language:</label>
-
-                <input type="radio" id="language1" name="language" value="Arabic" checked @bind-Value="visitor.Language" class="form-control" />
-                <label for="language1">Arabic</label> <br>
-
-                <input type="radio" id="language2" name="language" value="English" @bind-Value="visitor.Language" class="form-control" />
-                <label for="language2">English</label> <br>
+            <div class="form-check">
+                <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
+                <label class="form-check-label" for="ischecked">Accept Email Notification</label>
             </div>
-
-            <div class="form-group">
-                <label for="gender1">Gender:</label>
-
-                <input type="radio" id="gender1" name="gender" value="Female" checked @bind-Value="visitor.Gender" class="form-control" />
-                <label for="language1">Arabic</label> <br>
-            </div>
-
-            <div class="form-group">
-
-                <input type="radio" id="gender2" name="gender" value="Male" @bind-Value="visitor.Gender" class="form-control" />
-                <label for="gender2">Male</label> <br>
-            </div>
-
-
-            <div class="form-group">
-                <label for="contact-type">Contact Type*</label>
-                <select @bind="contact.ContactType" id="contact-type" class="form-control">
-                    <option value="">Select a type ...</option>
-                    @foreach (var color in Enum.GetNames(typeof(Color)))
-                    {
-                        <option>@contactType</option>
-                    }
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="department">Department*</label>
-                <select @bind="contact.Department" id="department" class="form-control">
-                    <option value="">Select a Department ...</option>
-                    @foreach (var color in Enum.GetNames(typeof(Color)))
-                    {
-                        <option>@Department</option>
-                    }
-                </select>
-            </div>
-
-
-
-            <div class="form-group col-md-2">
-                <label for="employeeId">Employee Id</label>
-                <InputNumber id="employeeId" @bind-Value="contact.EmployeeId" class="form-control" />
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="studentId">Student Id</label>
-                <InputNumber id="studentId" @bind-Value="contact.StudentId" class="form-control" />
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="phoneExtension">Phone Extension</label>
-                <InputNumber id="phoneExtension" @bind-Value="contact.PhoneExtension" class="form-control" />
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="officeNumber">Office Number</label>
-                <InputNumber id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
-            </div>
-
-            <fieldset>
-                <legend>Notification</legend>
-
-                <div class="form-check">
-                    <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
-                    <label class="form-check-label" for="ischecked">Accept SMS Notification</label>
-                </div>
-
-                <div class="form-check">
-                    <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
-                    <label class="form-check-label" for="ischecked">Accept Email Notification</label>
-                </div>
-
-                <div class="mt-2"></div>
-
-            </fieldset>
 
             <div class="mt-2"></div>
 
-            <button type="submit" class="btn btn-outline-primary">Save</button>
-            <a href="Contact/List" class="btn btn-outline-secondary">Cancel</a>
+        </fieldset>
+
+        <div class="mt-2"></div>
+
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+        <a href="Contact/List" class="btn btn-outline-secondary">Cancel</a>
     </EditForm>
 </fieldset>
-
 
 <br />
 
@@ -141,17 +146,38 @@
 
     protected override void OnInitialized()
     {
-        contact = ContService.GetDepartment(Id);
+        contact = ContService.GetContact(Id);
     }
 
-    public void EditContact()
+    // Used to handle customer gender using radio buttons
+    Gender gender = Gender.Female;
+
+    void SelectGender(ChangeEventArgs args)
+    {
+        Enum.TryParse(args.Value.ToString(), out gender);
+    }
+
+    Language language = Language.Arabic;
+
+    private void SelectLanguage(ChangeEventArgs args)
+    {
+        Enum.TryParse(args.Value.ToString(), out language);
+    }
+
+    // Added because Inputcheckbox does not accept nullable variables
+    private bool isChecked = false;
+
+    // Check why product.categoryId does not bind
+    private string departmentId = String.Empty;
+
+    private List<Department> departments = new List<Department>();
+
+    public void UpdateContact()
     {
         // Edit contact
         ContService.EditContact(contact);
 
         message = "Contact updated successfully";
-        //NavigationManager.NavigateTo("Contact /List");
+        NavigationManager.NavigateTo("Contact/List");
     }
 }*@
-
-

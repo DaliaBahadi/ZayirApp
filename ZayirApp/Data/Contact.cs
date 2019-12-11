@@ -20,8 +20,8 @@ namespace ZayirApp.Data
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public int? Language { get; set; }
-        public int? Gender { get; set; }
+        public Language? Language { get; set; }
+        public Gender? Gender { get; set; }
         public bool? AcceptSMSNotification { get; set; }
         public bool? AcceptEmailNotification { get; set; }
         public int DepartmentId { get; set; }
@@ -29,7 +29,7 @@ namespace ZayirApp.Data
         public int? EmployeeId { get; set; }
         public string PhoneExtention { get; set; }
         public string OfficeNumber { get; set; }
-        public int ContactType { get; set; }
+        public ContactTypes ContactType { get; set; }
 
         public virtual Department Department { get; set; }
         public virtual ICollection<Delivery> DeliveryContact { get; set; }
@@ -42,9 +42,12 @@ namespace ZayirApp.Data
 
     public enum Gender
     {
-        Female = 1,
+        Female = 1, Male
+    }
 
-        Male
+    public enum Language
+    {
+        Arabic = 1, English
     }
 
     public enum ContactTypes

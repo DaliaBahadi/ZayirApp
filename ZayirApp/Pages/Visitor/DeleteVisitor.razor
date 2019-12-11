@@ -1,6 +1,6 @@
-﻿@*@page "/Visitor/Delete/{Id:int}"
+﻿@page "/Visitor/Delete/{Id:int}"
 @inject NavigationManager NavigationManager
-    @inject CategoryService Service
+@inject VisitorService Service
 
 @using ZayirApp.Data;
 
@@ -19,7 +19,7 @@
 
 </table>
 <br />
-<button type="submit" class="" btn btn-outline-danger" @onclick="RemoveVisitor">Delete Visitor</button>
+<button type="submit" class="btn btn-outline-danger" @onclick="RemoveVisitor">Delete Visitor</button>
 <a href="/Visitor/List" class="btn btn-outline-secondary" role="button">Cancel</a>
 
 <br />
@@ -43,4 +43,4 @@
         visitor = Service.GetVisitor(Id);
     }
 
-}*@
+}

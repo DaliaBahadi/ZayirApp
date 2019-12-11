@@ -11,7 +11,7 @@ namespace ZayirApp.Data
         }
 
         public int RegistrationId { get; set; }
-        public int Status { get; set; }
+        public RegistrationStatuses Status { get; set; }
         public DateTime RegistrationDateTime { get; set; }
         public DateTime? ExpiryDateTime { get; set; }
         public DateTime VisitDateTime { get; set; }
@@ -21,5 +21,10 @@ namespace ZayirApp.Data
         public virtual Contact Contact { get; set; }
         public virtual Visitor Visitor { get; set; }
         public virtual ICollection<Visit> Visit { get; set; }
+    }
+
+    public enum RegistrationStatuses
+    {
+        Opened = 1, Closed
     }
 }

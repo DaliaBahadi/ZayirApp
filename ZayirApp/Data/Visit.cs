@@ -15,8 +15,8 @@ namespace ZayirApp.Data
         public DateTime SignInDateTime { get; set; }
         public DateTime? SignOutDateTime { get; set; }
         public string Description { get; set; }
-        public int Status { get; set; }
-        public int VisitType { get; set; }
+        public VisitStatuses Status { get; set; }
+        public VisitTypes VisitType { get; set; }
         public int? ValidityInDays { get; set; }
         public int GateId { get; set; }
         public int? EventId { get; set; }
@@ -35,5 +35,15 @@ namespace ZayirApp.Data
         public virtual Visitor Visitor { get; set; }
         public virtual ICollection<Notification> Notification { get; set; }
         public virtual ICollection<VisitAgreement> VisitAgreement { get; set; }
+    }
+
+    public enum VisitTypes
+    {
+        Personal = 1, Contract, Maintanace
+    }
+
+    public enum VisitStatuses
+    {
+        OnGoing = 1, Canceled
     }
 }
