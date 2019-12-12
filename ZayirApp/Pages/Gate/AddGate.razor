@@ -3,7 +3,7 @@
 @inject GateService GService
 
 <h3>Add New Gate</h3>
-<EditForm Model="gate" OnValidSubmit="AddGate1">
+<EditForm Model="gate" OnValidSubmit="AddNewGate">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -35,7 +35,7 @@
 @code {
     Gate gate = new Gate();
 
-    private void AddGate1()
+    private void AddNewGate()
     {
         GService.AddGate(gate);
         gate = new Gate();

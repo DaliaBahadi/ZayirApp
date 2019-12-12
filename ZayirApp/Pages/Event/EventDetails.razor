@@ -1,0 +1,45 @@
+﻿@page "/Event/Details/{Id:int}"
+
+@inject EventService EventService1
+
+    <h3>Event Details</h3>
+
+    <table>
+
+        <tr>
+            <td>Name: </td>
+            <td>@event1.Name</td>
+        </tr>
+
+        <tr>
+            <td>Start Date and Time: </td>
+            <td>@event1.StartDateTime</td>
+        </tr>
+
+        <tr>
+            <td>End Date and Time: </td>
+            <td>@event1.EndDateTime</td>
+        </tr>
+
+        <tr>
+            <td>Description: </td>
+            <td>@event1.Description</td>
+        </tr>
+
+    </table>
+
+<br />
+<a href="/Event/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+@code {
+
+    Event event1 = new Event();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        event1 = EventService1.GetEvent(Id);
+    }
+}

@@ -1,0 +1,44 @@
+﻿@page "/Event/Delete/{Id:int}"
+
+@inject NavigationManager NavigationManager
+@inject EventService EventService1
+
+    <h3>Delete Event</h3>
+
+    <div class="alert alert-danger">
+        Do you want to delete this Event?
+    </div>
+
+<table>
+    <tr>
+        <td>Name: </td>
+        <td>@event1.Name</td>
+    </tr>
+
+</table>
+<br />
+<button type="submit" class="btn btn-outline-danger" @onclick="RemoveEvent">Delete Gate</button>
+<a href="/Event/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+<br />
+
+@code {
+
+    Event event1 = new Event();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private void RemoveEvent()
+    {
+        EventService1.DeleteEvent(Id);
+
+        NavigationManager.NavigateTo("Event/List");
+    }
+
+    protected override void OnInitialized()
+    {
+        event1 = EventService1.GetEvent(Id);
+    }
+
+}

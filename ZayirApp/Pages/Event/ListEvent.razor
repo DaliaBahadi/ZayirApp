@@ -1,0 +1,64 @@
+﻿@page "/Event/List"
+
+@inject EventService EventService1
+
+<h1>Events</h1>
+
+<a href="Event/Add">
+    <span class="oi oi-plus"></span> &nbsp;
+    Add New event
+</a>
+
+<div class="mt-2"></div>
+
+@if (events == null)
+{
+    <div class="d-flex align-items-center">
+        <strong>Loading data ...</strong>
+        <div class="spinner-border ml-auto"></div>
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Start Date and Time:</th>
+                <th>End Date and Time:</th>
+                <th>Description:</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in events)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.StartDateTime</td>
+                    <td>@item.EndDateTime</td>
+                    <td>@item.Description</td>
+
+
+                    <td>
+                        <a href="Event/Details/@item.EventId"><span class="oi oi-list"></span></a> &nbsp;
+                        <a href="Event/Edit/@item.EventId"><span class="oi oi-pencil"></span></a> &nbsp;
+                        <a href="Event/Delete/@item.EventId"><span class="oi oi-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    // Create a list of Events to display in the component
+    List<Event> events = new List<Event>();
+
+    // Load the list when the component initilizes
+    protected override void OnInitialized()
+    {
+        // Get the gates from the service
+        events = EventService1.GetEvents();
+    }
+}

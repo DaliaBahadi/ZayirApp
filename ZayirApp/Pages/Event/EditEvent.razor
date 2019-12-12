@@ -1,0 +1,64 @@
+﻿@page "/Event/Edit/{Id:int}"
+
+@inject NavigationManager NavigationManager
+@inject EventService EventService1
+
+<h3>Edit Event Information</h3>
+<EditForm Model="event1" OnValidSubmit="UpdateEvent">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group col-md-6">
+        <label for="name">Name*:</label>
+        <InputText id="name" @bind-Value="event1.Name" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="StartDateTime">Start Date and Time</label>
+        <input type="datetime-local" name="StartDateTime">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="EndtDateTime">End Date and Time</label>
+        <input type="datetime-local" name="EndtDateTime">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="description">Description:</label>
+        <InputTextArea id="description" @bind-Value="event1.Description" class="form-control" />
+    </div>
+
+
+
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+    <a href="Event/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+</EditForm>
+
+<br />
+
+<p>@message</p>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    Event event1 = new Event();
+
+    string message;
+
+    protected override void OnInitialized()
+    {
+        event1 = EventService1.GetEvent(Id);
+    }
+
+    public void UpdateEvent()
+    {
+        // Update the Event
+        EventService1.EditEvent(event1);
+
+        message = "Event Edited successfully";
+        NavigationManager.NavigateTo("Event/List");
+    }
+}
