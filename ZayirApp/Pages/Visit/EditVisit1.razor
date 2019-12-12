@@ -4,19 +4,19 @@
 @inject NavigationManager NavigationManager
 @inject VisitService VisitService
 
-<h3>Edit Vist</h3>
+<h3>Edit Visit</h3>
 
 <EditForm Model="visit" OnValidSubmit="EditVisit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="form-group">
-        <label for="SigninDateTime">Sign in Date and Time</label>
+        <label for="SigninDateTime">Sign in Date and Time:</label>
         <input type="datetime-local" name="SigninDateTime">
     </div>
 
     <div class="form-group">
-        <label for="SignoutDateTime">Sign out Date and Time</label>
+        <label for="SignoutDateTime">Sign out Date and Time:</label>
         <input type="datetime-local" name="SignoutDateTime">
     </div>
 
@@ -34,7 +34,7 @@
     </div>
 
     <div class="form-group col-md-4">
-        <label for="inputVisitType">Visit Type</label>
+        <label for="inputVisitType">Visit Type:</label>
         <select id="inputVisitType" class="form-control">
             <option selected>---Choose---</option>
             <option value="1">Contractor</option>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="form-group col-md-4">
-        <label for="inputHost">Host</label>
+        <label for="inputHost">Host:</label>
         <select id="inputHost" class="form-control">
             <option selected>---Choose---</option>
             <option value="1">Azzah Ghamdi</option>
@@ -58,12 +58,12 @@
     </div>
 
     <div class="form-group">
-        <label for="validity">Validity In Days</label>
+        <label for="validity">Validity In Days:</label>
         <InputNumber id="validity" @bind-Value="visit.ValidityInDays" class="form-control" />
     </div>
 
     <div class="form-group col-md-4">
-        <label for="inputEvent">Event Name</label>
+        <label for="inputEvent">Event Name:</label>
         <select id="inputEvent" class="form-control">
             <option selected>---Choose---</option>
             <option value="1">DAH Bazar</option>
@@ -74,7 +74,7 @@
     </div>
 
     <div class="form-group col-md-4">
-        <label for="inputGateNumber">Gate Number</label>
+        <label for="inputGateNumber">Gate Number:</label>
         <select id="inputGateNumber" class="form-control">
             <option selected>---Choose---</option>
             <option value="1">Gate 1</option>

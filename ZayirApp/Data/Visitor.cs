@@ -31,6 +31,7 @@ namespace ZayirApp.Data
         public VisitorLanguage? Language { get; set; }
         public bool? AcceptSMSNotification { get; set; }
         public bool? AcceptEmailNotification { get; set; }
+        //public bool? AcceptPolicy { get; set; }
         public ClearanceLevel? ClearanceLevel { get; set; }
         public string Note { get; set; }
 

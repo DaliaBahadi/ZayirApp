@@ -4,22 +4,22 @@
 @inject ContactService ContService
 @inject NavigationManager NavigationManager
 
-<h3>Add New Contact</h3>
-
+<h3>Contact</h3>
+<br />
 <fieldset>
-    <legend>Add Contact</legend>
+    <legend>Add New Contact</legend>
     <EditForm Model="contact" OnValidSubmit="CreateContact">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
         <div class="form-group">
             <label for="firstname">First Name*</label>
-            <InputText id="firstname" @bind-Value="contact.FirstName" class="form-control" />
+            <InputText id="firstname" @bind-Value="contact.FirstName" class="form-control" placeholder="Enter Your Fisrt Name" />
         </div>
 
         <div class="form-group">
             <label for="lastname">Last Name*</label>
-            <InputText id="lastname" @bind-Value="contact.LastName" class="form-control" />
+            <InputText id="lastname" @bind-Value="contact.LastName" class="form-control" placeholder="Enter Your Last Name" />
         </div>
 
         <div class="form-group">
@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <label for="mobile">Mobile Number*</label>
-            <InputText id="mobile" @bind-Value="contact.Mobile" class="form-control" />
+            <InputText id="mobile" @bind-Value="contact.Mobile" class="form-control" placeholder="00966000000000" />
         </div>
 
 
@@ -127,6 +127,8 @@
 
         <button type="submit" class="btn btn-outline-primary">Add Contact</button>
         <a href="Contact/List" class="btn btn-outline-secondary">Cancel</a>
+        <br />
+        <br />
     </EditForm>
 </fieldset>
 
@@ -181,7 +183,7 @@
 
         ContService.AddContact(contact);
 
-        // To empty the form, find more elegant why
+        // To empty the form, find more elegant way
         contact = new Contact();
 
         // May navigate to the Contact/List component

@@ -1,6 +1,6 @@
-﻿@*@page "/Visitor/Edit/{Id:int}"
+﻿@page "/Visitor/Edit/{Id:int}"
 @inject NavigationManager NavigationManager
-    @inject CategoryService Service
+@inject VisitorService Visitor1Service
 
 @using ZayirApp.Data;
 
@@ -8,7 +8,7 @@
 
 <fieldset>
     <legend>Edit Visitor</legend>
-    <EditForm Model="visitor" OnValidSubmit="EditVisitor">
+    <EditForm Model="visitor" OnValidSubmit="UpdateVisitor">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -18,24 +18,26 @@
         </div>
 
         <div class="form-group">
-            <label for="father-name">Father Name:</label>
-            <InputText id="father-name" @bind-Value="visitor.FatherName" class="form-control" />
+            <label for="father-name">father name:</label>
+            <InputText id="father-name" @bind-value="visitor.FatherName" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label for="grandfather-name">Grandfather Name:</label>
-            <InputText id="grandfather-name" @bind-Value="visitor.GrandfatherName" class="form-control" />
+            <label for="grandfather-name">grandfather name:</label>
+            <InputText id="grandfather-name" @bind-value="visitor.GrandfatherName" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label for="last-name">Last Name:*</label>
-            <InputText id="last-name" @bind-Value="visitor.LastName" class="form-control" />
+            <label for="last-name">last name:*</label>
+            <InputText id="last-name" @bind-value="visitor.LastName" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label for="email">Email:*</label>
-            <Input type="email" id="email" @bind-Value="visitor.Email" placeholder="tom@gmail.com" class="form-control" />
+            <label for="email" class="control-label">Email: </label>
+            <InputText type="email" id="email" @bind-Value="visitor.Email" class="form-control" placeholder="sam@example.com" />
+            <ValidationMessage For="@(() => visitor.Email)" />
         </div>
+
 
         <div class="form-group">
             <label for="mobile">Mobile Number:*</label>
@@ -44,32 +46,42 @@
 
         <div class="form-group">
             <label for="NationalId">National Id:*</label>
-            <InputNumber id="NationalId" @bind-Value="Document.DocumentNumber" class="form-control" />
+            <InputNumber id="NationalId" @bind-Value="visitor.Document" class="form-control" />
         </div>
 
         <div class="form-group">
             <label for="birthDate">Date Of Birth:</label>
-            <InputDate id="birthDate" @bind-Value="visitor.BirhtDate" class="form-control" />
+            <InputDate id="birthDate" @bind-Value="visitor.BirthDate" class="form-control" />
         </div>
 
-        <div class="form-group">
-            <label for="language1">Language:</label>
+        <label class="mr-2">Language: </label>
 
-            <input type="radio" id="language1" name="language" value="Arabic" checked @bind-Value="visitor.Language" class="form-control" />
-            <label for="language1">Arabic</label> <br>
-
-            <input type="radio" id="language2" name="language" value="English" @bind-Value="visitor.Language" class="form-control" />
-            <label for="language2">English</label> <br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="arabic" name="language" value="Arabic" @onchange="SelectLanguage" />
+            <label class="form-check-label" for="arabic">
+                Arabic
+            </label>
         </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="english" name="language" value="English" @onchange="SelectLanguage" />
+            <label class="form-check-label" for="english">
+                English
+            </label>
+        </div>
+        <br />
+        <label class="mr-2">Gender: </label>
 
-        <div class="form-group">
-            <label for="gender1">Gender:</label>
-
-            <input type="radio" id="gender1" name="gender" value="Female" checked @bind-Value="visitor.Gender" class="form-control" />
-            <label for="language1">Arabic</label> <br>
-
-            <input type="radio" id="gender2" name="gender" value="Male" @bind-Value="visitor.Gender" class="form-control" />
-            <label for="gender2">Male</label> <br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" />
+            <label class="form-check-label" for="female">
+                Female
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
+            <label class="form-check-label" for="male">
+                Male
+            </label>
         </div>
 
         <div class="form-group">
@@ -84,7 +96,7 @@
 
         <div class="form-group">
             <label for="carLicensePlate">Car License Plate:</label>
-            <InputNumber id="carLicensePlate" @bind-Value="visitor.CarLicensePlate" class="form-control" />
+            <InputNumber id="carLicensePlate" @bind-Value="visitor.CarLicencePlate" class="form-control" />
         </div>
 
         <div class="form-group">
@@ -93,7 +105,7 @@
                 <option value="">Select a Level ...</option>
                 @foreach (var clearanceLevel in Enum.GetNames(typeof(ClearanceLevel)))
                 {
-                <option>@Visitor</option>
+                    <option>@visitor</option>
                 }
             </select>
         </div>
@@ -115,19 +127,18 @@
             <legend>Notification</legend>
 
             <div class="form-check">
-                <InputCheckbox id="ischecked" @bind-Value="visitor.AcceptSMSNotification" class="form-check-input" />
-                <label class="form-check-label" for="ischecked">Accept SMS Notification</label>
+                <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
+                <label class="form-check-label" for="ischeckedSms">Accept SMS Notification</label>
             </div>
 
             <div class="form-check">
-                <InputCheckbox id="ischecked" @bind-Value="visitor.AcceptEmailNotification" class="form-check-input" />
-                <label class="form-check-label" for="ischecked">Accept Email Notification</label>
+                <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
+                <label class="form-check-label" for="ischeckedEmail">Accept Email Notification</label>
             </div>
-
-            <div class="form-check">
+            @*<div class="form-check">
                 <InputCheckbox id="ischecked" @bind-Value="visit_agreement.Agreed" class="form-check-input" />
                 <label class="form-check-label" for="ischecked">I agree to the Policy of the Organization</label>
-            </div>
+            </div>*@
 
             <div class="mt-2"></div>
 
@@ -152,15 +163,33 @@
 
     protected override void OnInitialized()
     {
-        visitor = Service.GetVisitor(Id);
+        visitor = Visitor1Service.GetVisitor(Id);
     }
 
-    public void EditVisitor()
+    // Used to handle customer gender using radio buttons
+    VisitorGender gender = VisitorGender.Female;
+
+    void SelectGender(ChangeEventArgs args)
     {
-        // Edit visitor
-        Service.UpdateVisitor(visitor);
+        Enum.TryParse(args.Value.ToString(), out gender);
+    }
+
+    VisitorLanguage language = VisitorLanguage.Arabic;
+
+    private void SelectLanguage(ChangeEventArgs args)
+    {
+        Enum.TryParse(args.Value.ToString(), out language);
+    }
+
+    private bool acceptSms = false;
+    private bool acceptEmail = false;
+
+    public void UpdateVisitor()
+    {
+        // Edit contact
+        Visitor1Service.EditVisitor(visitor);
 
         message = "Visitor updated successfully";
-        //NavigationManager.NavigateTo("Visitor/List");
+        NavigationManager.NavigateTo("Visitor/List");
     }
-}*@
+}

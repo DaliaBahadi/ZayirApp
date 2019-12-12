@@ -64,23 +64,20 @@
         <td>@visitor.ClearanceLevel</td>
     </tr>
     <tr>
-        <td>Add to Watch-list:</td>
+        <td>Added to Watch-list:</td>
         <td>@visitor.IsBlacklisted</td>
     </tr>
 
-    
-
-
-    @*<Form>
+    @*<EditForm>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="Check1">
+                <InputCheckbox class="form-check-input" type="checkbox" value="" id="Check1">
                 <label class="form-check-label" for="Check1">
                     Add to Watch-list
                 </label>
+                </InputCheckbox>
             </div>
-        </Form>*@
-    
-
+    </EditForm>*@
+   
 </table>
 
 <a href="/Visitor/List" class="btn btn-info" role="button">Cancel</a>
