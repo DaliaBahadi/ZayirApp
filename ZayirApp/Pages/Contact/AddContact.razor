@@ -1,10 +1,8 @@
-﻿@*@page "/Contact/Add"
+﻿@page "/Contact/Add"
 
 @inject DepartmentService DepService
 @inject ContactService ContService
 @inject NavigationManager NavigationManager
-
-@using ZayirApp.Data;
 
 <h3>Add New Contact</h3>
 
@@ -14,43 +12,43 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <div class="form-group col-md-6">
-            <label for="first-name">First Name*</label>
-            <InputText id="first-name" @bind-Value="contact.FirstName" class="form-control" />
+        <div class="form-group">
+            <label for="firstname">First Name*</label>
+            <InputText id="firstname" @bind-Value="contact.FirstName" class="form-control" />
         </div>
 
-        <div class="form-group col-md-6">
-            <label for="last-name">Last Name*</label>
-            <InputText id="last-name" @bind-Value="contact.LastName" class="form-control" />
+        <div class="form-group">
+            <label for="lastname">Last Name*</label>
+            <InputText id="lastname" @bind-Value="contact.LastName" class="form-control" />
         </div>
 
         <div class="form-group">
             <label for="email" class="control-label">Email: </label>
-            <InputText id="email" @bind-value="contact.Email" class="form-control" placeholder="sam@example.com" />
+            <InputText type="email" id="email" @bind-Value="contact.Email" class="form-control" placeholder="sam@example.com" />
             <ValidationMessage For="@(() => contact.Email)" />
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label for="mobile">Mobile Number*</label>
-            <InputNumber id="mobile" @bind-Value="contact.Mobile" class="form-control" />
+            <InputText id="mobile" @bind-Value="contact.Mobile" class="form-control" />
         </div>
 
 
         <label class="mr-2">Language: </label>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="arabic" name="language" value="Female" @onchange="SelectLanguage" checked />
+            <input class="form-check-input" type="radio" id="arabic" name="language" value="Arabic" @onchange="SelectLanguage" checked />
             <label class="form-check-label" for="arabic">
                 Arabic
             </label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="english" name="language" value="Male" @onchange="SelectLanguage" />
+            <input class="form-check-input" type="radio" id="english" name="language" value="English" @onchange="SelectLanguage" />
             <label class="form-check-label" for="english">
                 English
             </label>
         </div>
-
+        <br />
         <label class="mr-2">Gender: </label>
 
         <div class="form-check form-check-inline">
@@ -67,10 +65,10 @@
         </div>
 
         <div class="form-group">
-            <label for="contact-type">Contact Type:*</label>
-            <select @bind="contact.ContactType" id="contact-type" class="form-control">
+            <label for="contacttype">Contact Type:</label>
+            <select @bind="contact.ContactType" id="contacttype" class="form-control">
                 <option value="">Select a type ...</option>
-                @foreach (var contactType in Enum.GetNames(typeof(ContactTypes)))
+                @foreach (var contactType in Enum.GetNames(typeof(ContactType)))
                 {
                     <option>@contactType</option>
                 }
@@ -78,17 +76,17 @@
         </div>
 
         <div class="form-group">
-            <label for="department">Department*</label>
-            <select @bind="contact.Department" id="department" class="form-control">
+            <label for="department">Department</label>
+            <InputSelect @bind-Value="departmentId" id="department" class="form-control">
                 <option value="">Select a Department ...</option>
                 @foreach (var department in departments)
                 {
-                    <option>@department</option>
+                    <option value="@department.DepartmentId">@department.Name</option>
                 }
-            </select>
+            </InputSelect>
         </div>
 
-        <div class="form-group col-md-2">
+        @*<div class="form-group col-md-2">
             <label for="employeeId">Employee Id</label>
             <InputNumber id="employeeId" @bind-Value="contact.EmployeeId" class="form-control" />
         </div>
@@ -96,29 +94,29 @@
         <div class="form-group col-md-2">
             <label for="studentId">Student Id</label>
             <InputNumber id="studentId" @bind-Value="contact.StudentId" class="form-control" />
-        </div>
+        </div>*@
 
-        <div class="form-group col-md-2">
+        <div class="form-group">
             <label for="phoneExtension">Phone Extension</label>
-            <InputNumber id="phoneExtension" @bind-Value="contact.PhoneExtention" class="form-control" />
+            <InputText id="phoneExtension" @bind-Value="contact.PhoneExtention" class="form-control" />
         </div>
 
-        <div class="form-group col-md-2">
+        <div class="form-group">
             <label for="officeNumber">Office Number</label>
-            <InputNumber id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
+            <InputText id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
         </div>
 
         <fieldset>
             <legend>Notification</legend>
 
             <div class="form-check">
-                <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
-                <label class="form-check-label" for="ischecked">Accept SMS Notification</label>
+                <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
+                <label class="form-check-label" for="ischeckedSms">Accept SMS Notification</label>
             </div>
 
             <div class="form-check">
-                <InputCheckbox id="ischecked" @bind-Value="isChecked" class="form-check-input" />
-                <label class="form-check-label" for="ischecked">Accept Email Notification</label>
+                <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
+                <label class="form-check-label" for="ischeckedEmail">Accept Email Notification</label>
             </div>
 
             <div class="mt-2"></div>
@@ -134,31 +132,29 @@
 
 
 @code {
-    Contact contact = new Contact();
+    private Contact contact = new Contact();
 
     // Needed for the category dropdown list
-    private List<Contact> contacts = new List<Contact>();
+    //private List<Contact> contacts = new List<Contact>();
 
-    // Added because Inputcheckbox does not accept nullable variables
-    private bool isChecked = false;
+    private bool acceptSms = false;
+    private bool acceptEmail = false;
 
-    // Check why product.categoryId does not bind
     private string departmentId = String.Empty;
 
     private List<Department> departments = new List<Department>();
-    //private int contactId;
 
     // Execute when component starts / initializes
     protected override void OnInitialized()
     {
-        contacts = ContService.GetContacts();
+        //contacts = ContService.GetContacts();
         departments = DepService.GetDepartments();
     }
 
     // Used to handle customer gender using radio buttons
-    Gender gender = Gender.Female;
+    private Gender gender = Gender.Female;
 
-    void SelectGender(ChangeEventArgs args)
+    private void SelectGender(ChangeEventArgs args)
     {
         Enum.TryParse(args.Value.ToString(), out gender);
     }
@@ -172,19 +168,18 @@
 
     private void CreateContact()
     {
-        // Update the customer gender
-        contact.Gender = (int?) gender;
+        contact.Gender = (Gender?) gender;
+        contact.Language = (Language?) language;
 
-        // Update the product properties
-        //contact = isChecked;
+        contact.AcceptSMSNotification = acceptSms;
+        contact.AcceptEmailNotification = acceptEmail;
 
-        // Convert categoryId from string to int
-        //if (!String.IsNullOrEmpty(contactId))
-        //{
-        //    contact.ContactId = Int32.Parse(contactId);
-        //}
+        if (!String.IsNullOrEmpty(departmentId))
+        {
+            contact.DepartmentId = Int32.Parse(departmentId);
+        }
 
-        ContService.AddNewContact(contact);
+        ContService.AddContact(contact);
 
         // To empty the form, find more elegant why
         contact = new Contact();
@@ -192,4 +187,4 @@
         // May navigate to the Contact/List component
         NavigationManager.NavigateTo("Contact/List");
     }
-}*@
+}
