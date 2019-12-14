@@ -1,5 +1,10 @@
 ﻿@page "/Visit/List"
-@using ZayirApp.Data
+@using ZayirApp.Data;
+@using static ZayirApp.Data.Contact;
+@using static ZayirApp.Data.Visitor;
+
+@inject VisitorService Visitor1Service
+
 
 @inject VisitService VisitService
 
@@ -14,59 +19,55 @@
 
 @if (visits == null)
 {
-<div class="d-flex align-items-center">
-    <strong>Loading data ...</strong>
-    <div class="spinner-border ml-auto"></div>
-</div>
+    <div class="d-flex align-items-center">
+        <strong>Loading data ...</strong>
+        <div class="spinner-border ml-auto"></div>
+    </div>
 }
 else
 {
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Visitor First Name</th>
-            <th>Visitor Last Name</th>
-            <th>Sign-in</th>
-            <th>Sign-out</th>
-            <th>Status</th>
-            <th>Visit Type</th>
-            <th>Contact</th>
-            <th>Task</th>
-        </tr>
-    </thead>
-    <tbody>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Visitor First Name</th>
+                <th>Visitor Last Name</th>
+                <th>Sign-in</th>
+                <th>Sign-out</th>
+                <th>Status</th>
+                <th>Visit Type</th>
+                <th>Contact</th>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
 
-        @foreach (var item in visits)
-        {
-        <tr>
-            @*<td>@item.Visitor.FirstName</td>
-            <td>@item.Visitor.LastName</td>*@
-            <td>@item.SignInDateTime.</td>
-            <td>@item.SignOutDateTime</td>
-            <td>@item.Status</td>
-            <td>@item.VisitType</td>
-            <td>@item.Contact.FirstName</td>
-            <td>
-                <a href="Visit/Details/@item.VisitId"><span class="oi oi-list"></span></a> &nbsp;
-                <a href="Visit/Edit/@item.VisitId"><span class="oi oi-pencil"></span></a> &nbsp;
-                <a href="Visit/Cancel/@item.VisitId"><span class="oi oi-trash"></span></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+            @foreach (var item in visits)
+            {
+                <tr>
+                    @*<td>@item.Visitor.FirstName</td>
+                        <td>@item.Visitor.LastName</td>*@
+                    <td>@item.SignInDateTime</td>
+                    <td>@item.SignOutDateTime</td>
+                    <td>@item.Status</td>
+                    <td>@item.VisitType</td>
+                    @*<td>@item.Contact.FirstName</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 
 @code {
 
     // Create a list of visits to be displayed in the component
-    
-    List<Visit> visits;
-    
+
+    // Create a list of visitors to be displayed in the component
+    List<Visit> visits = new List<Visit>();
+
     protected override void OnInitialized()
     {
-    // Get the Visit from the service
-    visits= VisitService.GetVisits();
+        // Get the Visit from the service
+        visits = VisitService.GetVisits();
     }
 }

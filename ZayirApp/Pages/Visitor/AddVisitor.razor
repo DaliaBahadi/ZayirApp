@@ -1,4 +1,5 @@
 ﻿@page "/Visitor/Add"
+@using ZayirApp.Data
 
 @inject VisitorService Visitor1Service
 @inject ContactService ContService
@@ -32,11 +33,11 @@
             <InputText id="last-name" @bind-Value="visitor.LastName" class="form-control" placeholder="Enter Your Last Name" />
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             <label for="email" class="control-label">Email: </label>
-            <InputText type="email" id="email" @bind-value="visitor.Email" class="form-control" placeholder="sam@example.com" />
+            <InputText type="email" id="email" @bind-Value="visitor.Email" class="form-control" placeholder="sam@example.com" />
             <ValidationMessage For="@(() => visitor.Email)" />
-        </div>*@
+        </div>
 
         <div class="form-group">
             <label for="mobile">Mobile Number:*</label>
