@@ -25,7 +25,8 @@ namespace ZayirApp.Services
         /// <returns>List of all categories</returns>
         public List<Visit> GetVisits()
         {
-            return db.Visit.ToList();
+            // Include contact and Visitor entities to be loaded with Visit
+            return db.Visit.Include("Contact").Include("Visitor").ToList();
         }
 
         /// <summary>

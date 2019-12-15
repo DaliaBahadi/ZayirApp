@@ -1,6 +1,6 @@
 ﻿@page "/Visitor/List"
 
-@inject VisitorService Visitor1Service
+@inject VisitorService VisitorService
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 @using ZayirApp.Data;
 
@@ -58,6 +58,6 @@ else
     protected override void OnInitialized()
     {
     // Get the visitors from the service
-    visitors = Visitor1Service.GetVisitors();
+    visitors = VisitorService.GetVisitors();
     }
 }

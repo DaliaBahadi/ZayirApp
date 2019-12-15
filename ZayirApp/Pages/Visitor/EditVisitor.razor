@@ -1,6 +1,6 @@
 ﻿@page "/Visitor/Edit/{Id:int}"
 @inject NavigationManager NavigationManager
-@inject VisitorService Visitor1Service
+@inject VisitorService VisitorService
 
 @using ZayirApp.Data;
 
@@ -126,18 +126,18 @@
 
         <div class="form-check">
             <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
-            <label class="form-check-label" for="ischeckedSms">Accept SMS Notification</label>
+            <label class="form-check-label" for="ischeckedSms">I Accept SMS Notification</label>
         </div>
 
         <div class="form-check">
             <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
-            <label class="form-check-label" for="ischeckedEmail">Accept Email Notification</label>
+            <label class="form-check-label" for="ischeckedEmail">I Accept Email Notification</label>
         </div>
 
-        <div class="form-check">
-            <InputCheckbox id="ischecked" @bind-Value="acceptPolicy" class="form-check-input" />
-            <label class="form-check-label" for="ischecked">I agree to the Policy of the Organization</label>
-        </div>
+        @*<div class="form-check">
+            <InputCheckbox id="ischeckedPolicy" @bind-Value="acceptPolicy" class="form-check-input" />
+            <label class="form-check-label" for="ischeckedPolicy">I agree to the Policy of the Organization</label>
+        </div>*@
 
     </fieldset>
     <br />
@@ -163,7 +163,7 @@
 
     protected override void OnInitialized()
     {
-        visitor = Visitor1Service.GetVisitor(Id);
+        visitor = VisitorService.GetVisitor(Id);
     }
 
     // Used to handle customer gender using radio buttons
@@ -184,10 +184,18 @@
     private bool acceptSms = false;
     private bool acceptEmail = false;
 
+    // There is no property in Visitor to store this info!
+    //private bool acceptPolicy = false;
+
     public void UpdateVisitor()
     {
+        // Update the Visitor properties
+        visitor.AcceptEmailNotification = acceptEmail;
+        visitor.AcceptSMSNotification = acceptEmail;
+        
+
         // Edit contact
-        Visitor1Service.EditVisitor(visitor);
+        VisitorService.EditVisitor(visitor);
 
         message = "Visitor updated successfully";
         NavigationManager.NavigateTo("Visitor/List");
