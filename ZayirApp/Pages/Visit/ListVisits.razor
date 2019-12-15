@@ -46,12 +46,16 @@ else
                 <tr>
                     @*Need to add include() in VisitService.GetVisits()*@
                     <td>@item.Visitor.FirstName</td>
-                        <td>@item.Visitor.LastName</td>
+                    <td>@item.Visitor.LastName</td>
                     <td>@item.SignInDateTime</td>
                     <td>@item.SignOutDateTime</td>
                     <td>@item.Status</td>
                     <td>@item.VisitType</td>
                     <td>@item.Contact.FirstName</td>
+
+                    <a href="Visit/Details/@item.VisitId"><span class="oi oi-list"></span></a> &nbsp;
+                    <a href="Visit/Edit/@item.VisitId"><span class="oi oi-pencil"></span></a>&nbsp;
+                    <a href="Visit/Cancel/@item.VisitId"><span class="oi oi-trash"></span></a>
                 </tr>
             }
         </tbody>
