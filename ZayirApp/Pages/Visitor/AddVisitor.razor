@@ -45,11 +45,20 @@
                     <InputText id="mobile" @bind-Value="visitor.Mobile" class="form-control" placeholder="00966000000000" />
                 </div>
 
-                @*Need to create a document object first, then put a dropdown list of documents here to select from*@
-                @*<div class="form-group">
-            <label for="nationalId">National Id:*</label>
-            <InputNumber id="nationalId" @bind-Value="visitor." class="form-control" />
-        </div>*@
+                @*Need to create a document object first, then put a dropdown list of documents here to select from
+                <div class="form-group">
+                    <label for="nationalId">National Id:*</label>
+                    <InputNumber id="nationalId" @bind-Value="visitor." class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputDoc">Document type:</label>
+                    <select id="inputDoc" class="form-control">
+                        <option selected>---Choose---</option>
+                        <option value="1">National Id</option>
+                        <option value="2">Passport Number</option>
+                        <option value="3">Car Licence Plate</option>
+                    </select>
+                </div>*@
 
                 <div class="form-group">
                     <label for="birthDate">Date Of Birth:</label>
@@ -156,6 +165,8 @@
 
     @code {
         Visitor visitor = new Visitor();
+
+        Document document = new Document();
 
         // Needed for the category dropdown list
         //private List<Contact> contacts = new List<Contact>();

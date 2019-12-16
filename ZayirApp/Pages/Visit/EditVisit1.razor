@@ -13,12 +13,12 @@
 
         <div class="form-group">
             <label for="SigninDateTime">Sign in Date and Time:</label>
-            <input type="datetime-local" name="SigninDateTime">
+            <input @bind="visit.SignInDateTime" type="datetime-local" name="SigninDateTime"/>
         </div>
 
         <div class="form-group">
             <label for="SignoutDateTime">Sign out Date and Time:</label>
-            <input type="datetime-local" name="SignoutDateTime">
+            <input @bind="visit.SignOutDateTime" type="datetime-local" name="SignoutDateTime"/>
         </div>
 
         <div class="form-check">
@@ -87,22 +87,21 @@
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
+            <InputTextArea @bind-Value="visit.Description"class="form-control" id="description" rows="3"></InputTextArea>
         </div>
 
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="agreement">
+            <InputCheckbox  @bind-Value="isChecked" class="form-check-input" id="agreement" />
             <label class="form-check-label" for="agreement">I agree to the Privacy Policy of the company</label>
         </div>
 
-        <br /><br />
+        <br />
         <div class="form-group row">
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-outline-primary">Print Badge</button>
             </div>
         </div>
-
 
         <div class="mt-2"></div>
 
@@ -124,6 +123,7 @@
     Visit visit = new Visit();
 
     string message;
+     private bool isChecked = false;
 
     protected override void OnInitialized()
     {
