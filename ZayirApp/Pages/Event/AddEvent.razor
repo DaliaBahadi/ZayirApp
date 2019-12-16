@@ -4,47 +4,49 @@
 @using ZayirApp.Data;
 @inject EventService EventService1
 
-<h3>Add New Event</h3>
+<div class="container">
 
-<EditForm Model="event1" OnValidSubmit="AddNewEvent">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <h3>Add New Event</h3>
 
-    <div class="form-group col-md-6">
-        <label for="name">Name*:</label>
-        <InputText id="name" @bind-Value="event1.Name" class="form-control" />
-    </div>
+    <EditForm Model="event1" OnValidSubmit="AddNewEvent">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="form-group col-md-6">
-        <label for="StartDateTime">Start Date and Time</label>
-        <input type="datetime-local" name="StartDateTime">
-    </div>
+        <div class="form-group col-md-6">
+            <label for="name">Name*:</label>
+            <InputText id="name" @bind-Value="event1.Name" class="form-control" />
+        </div>
 
-    <div class="form-group col-md-6">
-        <label for="EndtDateTime">End Date and Time</label>
-        <input type="datetime-local" name="EndtDateTime">
-    </div>
+        <div class="form-group col-md-6">
+            <label for="StartDateTime">Start Date and Time</label>
+            <input type="datetime-local" name="StartDateTime">
+        </div>
 
-    <div class="form-group col-md-6">
-        <label for="description">Description:</label>
-        <InputTextArea id="description" @bind-Value="event1.Description" class="form-control" />
-    </div>
+        <div class="form-group col-md-6">
+            <label for="EndtDateTime">End Date and Time</label>
+            <input type="datetime-local" name="EndtDateTime">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="description">Description:</label>
+            <InputTextArea id="description" @bind-Value="event1.Description" class="form-control" />
+        </div>
 
 
 
-    <button type="submit" class="btn btn-outline-primary">Save</button>
-    <a href="Event/List" class="btn btn-outline-secondary" role="button">Cancel</a>
-
-</EditForm>
-
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+        <a href="Event/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+        <br />
+    </EditForm>
+</div>
 @code {
 
-Event event1 = new Event();
+    Event event1 = new Event();
 
-private void AddNewEvent()
-{
+    private void AddNewEvent()
+    {
         EventService1.AddEvent(event1);
 
-            event1 = new Event();
-}
+        event1 = new Event();
+    }
 }

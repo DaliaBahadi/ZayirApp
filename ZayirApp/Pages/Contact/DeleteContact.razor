@@ -2,26 +2,29 @@
 @using ZayirApp.Data;
 
 @inject NavigationManager NavigationManager
-    @inject ContactService ContService
+@inject ContactService ContService
 
-<h3>Delete Contact</h3>
-<div class="container">
-    <div class="alert alert-danger">
-        Do you want to delete this Contact?
+    <div class="container">
+        <h3>Delete Contact</h3>
+        <div class="container">
+            <div class="alert alert-danger">
+                Do you want to delete this Contact?
+            </div>
+
+            <table>
+                <tr>
+                    <td>Name: </td>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                </tr>
+
+            </table>
+            <br />
+            <button type="submit" class="btn btn-outline-danger" @onclick="RemoveContact">Delete Contact</button>
+            <a href="/Contact/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+            <br /><br />
+        </div>
     </div>
-
-    <table>
-        <tr>
-            <td>Name: </td>
-            <td>@contact.FirstName</td>
-            <td>@contact.LastName</td>
-        </tr>
-
-    </table>
-    <br />
-    <button type="submit" class="btn btn-outline-danger" @onclick="RemoveContact">Delete Contact</button>
-    <a href="/Contact/List" class="btn btn-outline-secondary" role="button">Cancel</a>
-</div>
 
     @code {
 

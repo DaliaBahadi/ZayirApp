@@ -3,29 +3,30 @@
 @using ZayirApp.Data;
 
 @inject NavigationManager NavigationManager
-
 @inject DepartmentService DepService
 
-<h3>Edit Department Information</h3>
+<div class="container">
 
-<EditForm Model="department" OnValidSubmit="EditDepartment1">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <h3>Edit Department Information</h3>
 
-    <div class="form-group">
-        
-        <label for="name">Name*</label>
+    <EditForm Model="department" OnValidSubmit="EditDepartment1">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-        <InputText id="name" @bind-Value="department.Name" class="form-control" />
+        <div class="form-group">
 
-    </div>
+            <label for="name">Name*</label>
 
-    <button type="submit" class="btn btn-outline-primary">Save</button>
+            <InputText id="name" @bind-Value="department.Name" class="form-control" />
 
-    <a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+        </div>
 
-</EditForm>
+        <button type="submit" class="btn btn-outline-primary">Save</button>
 
+        <a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+    </EditForm>
+</div>
 <br />
 
 <p>@message</p>

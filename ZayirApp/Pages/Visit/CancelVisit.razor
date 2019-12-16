@@ -4,28 +4,30 @@
 @inject NavigationManager NavigationManager
 @inject VisitService VisitService
 
-<h3>Cancel Visit</h3>
+<div class="container">
+    <h3>Cancel Visit</h3>
 
-<div class="alert alert-danger">
-    Do you want to cancel this Visit?
+    <div class="alert alert-danger">
+        Do you want to cancel this Visit?
+    </div>
+
+    <table>
+        <tr>
+            <th>Visitor Name:</th>
+            <td>@visit.Visitor.FirstName</td>
+            <td>@visit.Visitor.LastName</td>
+        </tr>
+        <tr>
+            <th>Visit Date:</th>
+            <td>@visit.SignInDateTime</td>
+        </tr>
+    </table>
+    <br />
+    <button type="submit" class="btn btn-outline-danger" @onclick="RemoveVisit">Remove Visit</button>
+    <a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+    <br />
 </div>
-
-<table>
-    <tr>
-        <th>Visitor Name:</th>
-        <td>@visit.Visitor.FirstName</td>
-        <td>@visit.Visitor.LastName</td>
-    </tr>
-    <tr>
-        <th>Visit Date:</th>
-        <td>@visit.SignInDateTime</td>
-    </tr>
-</table>
-<br />
-<button type="submit" class="btn btn-outline-danger" @onclick="RemoveVisit">Remove Visit</button>
-<a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
-
-<br />
 
 @code {
 
@@ -43,6 +45,6 @@
 
     protected override void OnInitialized()
     {
-        visit= VisitService.GetVisit(Id);
+        visit = VisitService.GetVisit(Id);
     }
 }

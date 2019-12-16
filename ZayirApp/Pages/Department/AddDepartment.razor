@@ -4,25 +4,26 @@
 
 @inject DepartmentService DepService
 
-<h3>Add New Department</h3>
+<div class="container">
+    <h3>Add New Department</h3>
 
-<EditForm Model="department" OnValidSubmit="AddDepartment1">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <EditForm Model="department" OnValidSubmit="AddDepartment1">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="form-group">
-        
-        <label for="name">Name*</label>
+        <div class="form-group">
 
-        <InputText id="name" @bind-Value="department.Name" class="form-control" />
+            <label for="name">Name*</label>
 
-    </div>
+            <InputText id="name" @bind-Value="department.Name" class="form-control" />
 
-    <button type="submit" class="btn btn-outline-primary">Save</button>
-    <a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+        </div>
 
-</EditForm>
-
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+        <a href="Department/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+        <br />
+    </EditForm>
+</div>
 @code {
 
     Department department = new Department();
@@ -31,6 +32,6 @@
     {
         DepService.AddDepartment(department);
 
-         department = new Department();
+        department = new Department();
     }
 }
