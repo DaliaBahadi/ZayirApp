@@ -3,84 +3,87 @@
 
 @using ZayirApp.Data;
 
-<h3>Visitor Details</h3>
+<div class="container">
+    <h3>Visitor Details</h3>
 
-<table class="table table-hover">
+    <table class="table table-hover">
 
-    <tr>
-        <td>First Name: </td>
-        <td>@visitor.FirstName</td>
-    </tr>
-    <tr>
-        <td>Father Name: </td>
-        <td>@visitor.FatherName</td>
-    </tr>
-    <tr>
-        <td>Grandfather Name:</td>
-        <td>@visitor.GrandfatherName</td>
-    </tr>
-    <tr>
-        <td>Last Name:</td>
-        <td>@visitor.LastName</td>
-    </tr>
-    @*<tr>
-        <td>National Id:</td>
-        <td>@visitor.Document</td>
-    </tr>*@
-    <tr>
-        <td>Email: </td>
-        <td>@visitor.Email</td>
-    </tr>
-    <tr>
-        <td>Mobile: </td>
-        <td>@visitor.Mobile</td>
-    </tr>
-    <tr>
-        <td>Date Of Birth: </td>
-        <td>@visitor.BirthDate</td>
-    </tr>
-    <tr>
-        <td>Language: </td>
-        <td>@visitor.Language</td>
-    </tr>
-    <tr>
-        <td>Gender: </td>
-        <td>@visitor.Gender.</td>
-    </tr>
-    <tr>
-        <td>Job Title:</td>
-        <td>@visitor.JobTitle</td>
-    </tr>
-    <tr>
-        <td>Company: </td>
-        <td>@visitor.Company</td>
-    </tr>
-    <tr>
-        <td>Car License Plate:</td>
-        <td>@visitor.CarLicencePlate</td>
-    </tr>
-    <tr>
-        <td>Clearance Level: </td>
-        <td>@visitor.ClearanceLevel</td>
-    </tr>
-    <tr>
-        <td>Added to Watch-list:</td>
-        <td>@visitor.IsBlacklisted</td>
-    </tr>
+        <tr>
+            <td>First Name: </td>
+            <td>@visitor.FirstName</td>
+        </tr>
+        <tr>
+            <td>Father Name: </td>
+            <td>@visitor.FatherName</td>
+        </tr>
+        <tr>
+            <td>Grandfather Name:</td>
+            <td>@visitor.GrandfatherName</td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td>@visitor.LastName</td>
+        </tr>
+        @*<tr>
+                <td>National Id:</td>
+                <td>@visitor.Document</td>
+            </tr>*@
+        <tr>
+            <td>Email: </td>
+            <td>@visitor.Email</td>
+        </tr>
+        <tr>
+            <td>Mobile: </td>
+            <td>@visitor.Mobile</td>
+        </tr>
+        <tr>
+            <td>Date Of Birth: </td>
+            <td>@visitor.BirthDate</td>
+        </tr>
+        <tr>
+            <td>Language: </td>
+            <td>@visitor.Language</td>
+        </tr>
+        <tr>
+            <td>Gender: </td>
+            <td>@visitor.Gender.</td>
+        </tr>
+        <tr>
+            <td>Job Title:</td>
+            <td>@visitor.JobTitle</td>
+        </tr>
+        <tr>
+            <td>Company: </td>
+            <td>@visitor.Company</td>
+        </tr>
+        <tr>
+            <td>Car License Plate:</td>
+            <td>@visitor.CarLicencePlate</td>
+        </tr>
+        <tr>
+            <td>Clearance Level: </td>
+            <td>@visitor.ClearanceLevel</td>
+        </tr>
+        <tr>
+            <td>Added to Watch-list:</td>
+            <td>@visitor.IsBlacklisted</td>
+        </tr>
 
-    @*<EditForm>
-            <div class="form-check">
-                <InputCheckbox class="form-check-input" type="checkbox" value="" id="Check1">
-                <label class="form-check-label" for="Check1">
-                    Add to Watch-list
-                </label>
-                </InputCheckbox>
-            </div>
-    </EditForm>*@
-   
-</table>
+        @*<EditForm>
+                    <div class="form-check">
+                        <InputCheckbox class="form-check-input" type="checkbox" value="" id="Check1">
+                        <label class="form-check-label" for="Check1">
+                            Add to Watch-list
+                        </label>
+                        </InputCheckbox>
+                    </div>
+            </EditForm>*@
 
-<a href="/Visitor/List" class="btn btn-info" role="button">Cancel</a>
+    </table>
+
+    <a href="/Visitor/List" class="btn btn-info" role="button">Cancel</a>
+    <div class="mt-4"></div>
+</div>
 
 @code {
 

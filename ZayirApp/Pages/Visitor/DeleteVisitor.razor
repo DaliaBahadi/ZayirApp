@@ -4,27 +4,33 @@
 
 @using ZayirApp.Data;
 
-<h3>Delete Visitor</h3>
+<div class="container">
+    <h3>Delete Visitor</h3>
 
-<div class="alert alert-danger">
-    Do you want to delete this Visitor?
+    <div class="alert alert-danger">
+        Do you want to delete this Visitor?
+    </div>
+
+    <table>
+        <tr>
+            <th>Name: </th>
+            <td>@visitor.FirstName @visitor.LastName</td>
+        </tr>
+        <tr>
+            <th>Mobile: </th>
+            <td>@visitor.Mobile</td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>@visitor.Email</td>
+        </tr>
+    </table>
+    <br />
+    <button type="submit" class="btn btn-outline-danger" @onclick="RemoveVisitor">Delete Visitor</button>
+    <a href="/Visitor/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+
+    <div class="mt-4"></div>
 </div>
-
-<table>
-    <tr>
-        <td>Name: </td>
-        <td>@visitor.FirstName</td>
-        <td>@visitor.LastName</td>
-        <td>@visitor.Mobile</td>
-        <td>@visitor.Email</td>
-    </tr>
-
-</table>
-<br />
-<button type="submit" class="btn btn-outline-danger" @onclick="RemoveVisitor">Delete Visitor</button>
-<a href="/Visitor/List" class="btn btn-outline-secondary" role="button">Cancel</a>
-
-<br />
 
 @code {
 

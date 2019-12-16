@@ -6,188 +6,189 @@
 
 <h3>Contact</h3>
 <br />
-<fieldset>
-    <legend>Add New Contact</legend>
-    <EditForm Model="contact" OnValidSubmit="CreateContact">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<div class="container">
+    <fieldset>
+        <legend>Add New Contact</legend>
+        <EditForm Model="contact" OnValidSubmit="CreateContact">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-        <div class="form-group">
-            <label for="firstname">First Name*</label>
-            <InputText id="firstname" @bind-Value="contact.FirstName" class="form-control" placeholder="Enter Your Fisrt Name" />
-        </div>
-
-        <div class="form-group">
-            <label for="lastname">Last Name*</label>
-            <InputText id="lastname" @bind-Value="contact.LastName" class="form-control" placeholder="Enter Your Last Name" />
-        </div>
-
-        <div class="form-group">
-            <label for="email" class="control-label">Email: </label>
-            <InputText type="email" id="email" @bind-Value="contact.Email" class="form-control" placeholder="sam@example.com" />
-            <ValidationMessage For="@(() => contact.Email)" />
-        </div>
-
-        <div class="form-group">
-            <label for="mobile">Mobile Number*</label>
-            <InputText id="mobile" @bind-Value="contact.Mobile" class="form-control" placeholder="00966000000000" />
-        </div>
-
-
-        <label class="mr-2">Language: </label>
-
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="arabic" name="language" value="Arabic" @onchange="SelectLanguage" checked />
-            <label class="form-check-label" for="arabic">
-                Arabic
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="english" name="language" value="English" @onchange="SelectLanguage" />
-            <label class="form-check-label" for="english">
-                English
-            </label>
-        </div>
-        <br />
-        <label class="mr-2">Gender: </label>
-
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" checked />
-            <label class="form-check-label" for="female">
-                Female
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
-            <label class="form-check-label" for="male">
-                Male
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label for="contacttype">Contact Type:</label>
-            <select @bind="contact.ContactType" id="contacttype" class="form-control">
-                <option value="">Select a type ...</option>
-                @foreach (var contactType in Enum.GetNames(typeof(ContactType)))
-                {
-                    <option>@contactType</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="department">Department</label>
-            <InputSelect @bind-Value="departmentId" id="department" class="form-control">
-                <option value="">Select a Department ...</option>
-                @foreach (var department in departments)
-                {
-                    <option value="@department.DepartmentId">@department.Name</option>
-                }
-            </InputSelect>
-        </div>
-
-        @*<div class="form-group col-md-2">
-            <label for="employeeId">Employee Id</label>
-            <InputNumber id="employeeId" @bind-Value="contact.EmployeeId" class="form-control" />
-        </div>
-
-        <div class="form-group col-md-2">
-            <label for="studentId">Student Id</label>
-            <InputNumber id="studentId" @bind-Value="contact.StudentId" class="form-control" />
-        </div>*@
-
-        <div class="form-group">
-            <label for="phoneExtension">Phone Extension</label>
-            <InputText id="phoneExtension" @bind-Value="contact.PhoneExtention" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="officeNumber">Office Number</label>
-            <InputText id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
-        </div>
-
-        <fieldset>
-            <legend>Notification</legend>
-
-            <div class="form-check">
-                <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
-                <label class="form-check-label" for="ischeckedSms">Accept SMS Notification</label>
+            <div class="form-group">
+                <label for="firstname">First Name*</label>
+                <InputText id="firstname" @bind-Value="contact.FirstName" class="form-control" placeholder="Enter Your Fisrt Name" />
             </div>
 
-            <div class="form-check">
-                <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
-                <label class="form-check-label" for="ischeckedEmail">Accept Email Notification</label>
+            <div class="form-group">
+                <label for="lastname">Last Name*</label>
+                <InputText id="lastname" @bind-Value="contact.LastName" class="form-control" placeholder="Enter Your Last Name" />
             </div>
+
+            <div class="form-group">
+                <label for="email" class="control-label">Email: </label>
+                <InputText type="email" id="email" @bind-Value="contact.Email" class="form-control" placeholder="sam@example.com" />
+                <ValidationMessage For="@(() => contact.Email)" />
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number*</label>
+                <InputText id="mobile" @bind-Value="contact.Mobile" class="form-control" placeholder="00966000000000" />
+            </div>
+
+
+            <label class="mr-2">Language: </label>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="arabic" name="language" value="Arabic" @onchange="SelectLanguage" checked />
+                <label class="form-check-label" for="arabic">
+                    Arabic
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="english" name="language" value="English" @onchange="SelectLanguage" />
+                <label class="form-check-label" for="english">
+                    English
+                </label>
+            </div>
+            <br />
+            <label class="mr-2">Gender: </label>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" checked />
+                <label class="form-check-label" for="female">
+                    Female
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
+                <label class="form-check-label" for="male">
+                    Male
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="contacttype">Contact Type:</label>
+                <select @bind="contact.ContactType" id="contacttype" class="form-control">
+                    <option value="">Select a type ...</option>
+                    @foreach (var contactType in Enum.GetNames(typeof(ContactType)))
+                    {
+                        <option>@contactType</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <InputSelect @bind-Value="departmentId" id="department" class="form-control">
+                    <option value="">Select a Department ...</option>
+                    @foreach (var department in departments)
+                    {
+                        <option value="@department.DepartmentId">@department.Name</option>
+                    }
+                </InputSelect>
+            </div>
+
+            @*<div class="form-group col-md-2">
+                    <label for="employeeId">Employee Id</label>
+                    <InputNumber id="employeeId" @bind-Value="contact.EmployeeId" class="form-control" />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="studentId">Student Id</label>
+                    <InputNumber id="studentId" @bind-Value="contact.StudentId" class="form-control" />
+                </div>*@
+
+            <div class="form-group">
+                <label for="phoneExtension">Phone Extension</label>
+                <InputText id="phoneExtension" @bind-Value="contact.PhoneExtention" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="officeNumber">Office Number</label>
+                <InputText id="officeNumber" @bind-Value="contact.OfficeNumber" class="form-control" />
+            </div>
+
+            <fieldset>
+                <legend>Notification</legend>
+
+                <div class="form-check">
+                    <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
+                    <label class="form-check-label" for="ischeckedSms">Accept SMS Notification</label>
+                </div>
+
+                <div class="form-check">
+                    <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
+                    <label class="form-check-label" for="ischeckedEmail">Accept Email Notification</label>
+                </div>
+
+                <div class="mt-2"></div>
+
+            </fieldset>
 
             <div class="mt-2"></div>
 
-        </fieldset>
+            <button type="submit" class="btn btn-outline-primary">Add Contact</button>
+            <a href="Contact/List" class="btn btn-outline-secondary">Cancel</a>
 
-        <div class="mt-2"></div>
+            <br />
+            <br />
+        </EditForm>
+    </fieldset>
+</div>
 
-        <button type="submit" class="btn btn-outline-primary">Add Contact</button>
-        <a href="Contact/List" class="btn btn-outline-secondary">Cancel</a>
+    @code {
+        private Contact contact = new Contact();
 
-        <br />
-        <br />
-    </EditForm>
-</fieldset>
+        // Needed for the category dropdown list
+        //private List<Contact> contacts = new List<Contact>();
 
+        private bool acceptSms = false;
+        private bool acceptEmail = false;
 
-@code {
-    private Contact contact = new Contact();
+        private string departmentId = String.Empty;
 
-    // Needed for the category dropdown list
-    //private List<Contact> contacts = new List<Contact>();
+        private List<Department> departments = new List<Department>();
 
-    private bool acceptSms = false;
-    private bool acceptEmail = false;
-
-    private string departmentId = String.Empty;
-
-    private List<Department> departments = new List<Department>();
-
-    // Execute when component starts / initializes
-    protected override void OnInitialized()
-    {
-        //contacts = ContService.GetContacts();
-        departments = DepService.GetDepartments();
-    }
-
-    // Used to handle customer gender using radio buttons
-    private Gender gender = Gender.Female;
-
-    private void SelectGender(ChangeEventArgs args)
-    {
-        Enum.TryParse(args.Value.ToString(), out gender);
-    }
-
-    Language language = Language.Arabic;
-
-    private void SelectLanguage(ChangeEventArgs args)
-    {
-        Enum.TryParse(args.Value.ToString(), out language);
-    }
-
-    private void CreateContact()
-    {
-        contact.Gender = (Gender?) gender;
-        contact.Language = (Language?) language;
-
-        contact.AcceptSMSNotification = acceptSms;
-        contact.AcceptEmailNotification = acceptEmail;
-
-        if (!String.IsNullOrEmpty(departmentId))
+        // Execute when component starts / initializes
+        protected override void OnInitialized()
         {
-            contact.DepartmentId = Int32.Parse(departmentId);
+            //contacts = ContService.GetContacts();
+            departments = DepService.GetDepartments();
         }
 
-        ContService.AddContact(contact);
+        // Used to handle customer gender using radio buttons
+        private Gender gender = Gender.Female;
 
-        // To empty the form, find more elegant way
-        contact = new Contact();
+        private void SelectGender(ChangeEventArgs args)
+        {
+            Enum.TryParse(args.Value.ToString(), out gender);
+        }
 
-        // May navigate to the Contact/List component
-        NavigationManager.NavigateTo("Contact/List");
+        Language language = Language.Arabic;
+
+        private void SelectLanguage(ChangeEventArgs args)
+        {
+            Enum.TryParse(args.Value.ToString(), out language);
+        }
+
+        private void CreateContact()
+        {
+            contact.Gender = (Gender?)gender;
+            contact.Language = (Language?)language;
+
+            contact.AcceptSMSNotification = acceptSms;
+            contact.AcceptEmailNotification = acceptEmail;
+
+            if (!String.IsNullOrEmpty(departmentId))
+            {
+                contact.DepartmentId = Int32.Parse(departmentId);
+            }
+
+            ContService.AddContact(contact);
+
+            // To empty the form, find more elegant way
+            contact = new Contact();
+
+            // May navigate to the Contact/List component
+            NavigationManager.NavigateTo("Contact/List");
+        }
     }
-}

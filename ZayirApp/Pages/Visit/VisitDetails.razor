@@ -3,76 +3,79 @@
 
 @inject VisitService VisitService
 
-<h3>Visit Details</h3>
+    <div class="container">
+        <h3>Visit Details</h3>
 
-<table>
-    <tr>
-        <td>Visit Id: </td>
-        <td>@visit.VisitId</td>
-    </tr>
-    <tr>
-        <td>First Name: </td>
-        <td>@visit.Visitor.FirstName</td>
-    </tr>
+        <table class="table table-hover">
+            <tr>
+                <td>Visit Id: </td>
+                <td>@visit.VisitId</td>
+            </tr>
+            <tr>
+                <td>First Name: </td>
+                <td>@visit.Visitor.FirstName</td>
+            </tr>
 
-    <tr>
-        <td>Last Name: </td>
-        <td>@visit.Visitor.LastName</td>
-    </tr>
-    <tr>
-        <td>Sign-in: </td>
-        <td>@visit.SignInDateTime.</td>
-    </tr>
+            <tr>
+                <td>Last Name: </td>
+                <td>@visit.Visitor.LastName</td>
+            </tr>
+            <tr>
+                <td>Sign-in: </td>
+                <td>@visit.SignInDateTime.</td>
+            </tr>
 
-    <tr>
-        <td>Sign-out: </td>
-        <td>@visit.SignOutDateTime</td>
-    </tr>
+            <tr>
+                <td>Sign-out: </td>
+                <td>@visit.SignOutDateTime</td>
+            </tr>
 
-    <tr>
-        <td>Status: </td>
-        <td>@visit.Status</td>
-    </tr>
+            <tr>
+                <td>Status: </td>
+                <td>@visit.Status</td>
+            </tr>
 
 
-    <tr>
-        <td>Visit Type: </td>
-        <td>@visit.VisitType</td>
-    </tr>
+            <tr>
+                <td>Visit Type: </td>
+                <td>@visit.VisitType</td>
+            </tr>
 
-    <tr>
-        <td>Contact: </td>
-        <td>@visit.Contact</td>
-    </tr>
+            <tr>
+                <td>Contact: </td>
+                <td>@visit.Contact</td>
+            </tr>
 
-    <tr>
-        <td>Validity In Days</td>
-        <td>@visit.ValidityInDays</td>
-    </tr>
+            <tr>
+                <td>Validity In Days</td>
+                <td>@visit.ValidityInDays</td>
+            </tr>
 
-    <tr>
-        <td>Event Name: </td>
-        <td>@visit.Event</td>
-    </tr>
+            <tr>
+                <td>Event Name: </td>
+                <td>@visit.Event</td>
+            </tr>
 
-    <tr>
-        <td>Gate Number: </td>
-        <td>@visit.Gate</td>
-    </tr>
+            <tr>
+                <td>Gate Number: </td>
+                <td>@visit.Gate</td>
+            </tr>
 
-    <tr>
-        <td>Description: </td>
-        <td>@visit.Description</td>
-    </tr>
+            <tr>
+                <td>Description: </td>
+                <td>@visit.Description</td>
+            </tr>
 
-    <tr>
-        <td>Agreement: </td>
-        <td>@visit.VisitAgreement.</td>
-    </tr>
-</table>
+            <tr>
+                <td>Agreement: </td>
+                <td>@visit.VisitAgreement.</td>
+            </tr>
+        </table>
 
-<br />
-<a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+        <br />
+        <a href="/Visit/List" class="btn btn-outline-secondary" role="button">Cancel</a>
+        <div class="mt-4"></div>
+    </div>
 
 @code {
 

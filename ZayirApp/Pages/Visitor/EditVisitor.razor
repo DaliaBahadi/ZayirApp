@@ -4,150 +4,152 @@
 
 @using ZayirApp.Data;
 
-<h3>Edit Visitor Information</h3>
-<fieldset>
-    <legend>Edit</legend>
-<EditForm Model="visitor" OnValidSubmit="UpdateVisitor">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="container">
+    <h3>Edit Visitor Information</h3>
+    <fieldset>
+        <legend>Edit</legend>
+        <EditForm Model="visitor" OnValidSubmit="UpdateVisitor">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-    <div class="form-group">
-        <label for="first-name">First Name:*</label>
-        <InputText id="first-name" @bind-Value="visitor.FirstName" class="form-control" placeholder="Enter Your Fisrt Name" />
-    </div>
+            <div class="form-group">
+                <label for="first-name">First Name:*</label>
+                <InputText id="first-name" @bind-Value="visitor.FirstName" class="form-control" placeholder="Enter Your Fisrt Name" />
+            </div>
 
-    <div class="form-group">
-        <label for="father-name">Father Name:</label>
-        <InputText id="father-name" @bind-Value="visitor.FatherName" class="form-control" placeholder="Enter Your Father's Name" />
-    </div>
+            <div class="form-group">
+                <label for="father-name">Father Name:</label>
+                <InputText id="father-name" @bind-Value="visitor.FatherName" class="form-control" placeholder="Enter Your Father's Name" />
+            </div>
 
-    <div class="form-group">
-        <label for="grandfather-name">Grandfather Name:</label>
-        <InputText id="grandfather-name" @bind-Value="visitor.GrandfatherName" class="form-control" placeholder="Enter Your Grandfather's Name" />
-    </div>
+            <div class="form-group">
+                <label for="grandfather-name">Grandfather Name:</label>
+                <InputText id="grandfather-name" @bind-Value="visitor.GrandfatherName" class="form-control" placeholder="Enter Your Grandfather's Name" />
+            </div>
 
-    <div class="form-group">
-        <label for="last-name">Last Name:*</label>
-        <InputText id="last-name" @bind-Value="visitor.LastName" class="form-control" placeholder="Enter Your Last Name" />
-    </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:*</label>
+                <InputText id="last-name" @bind-Value="visitor.LastName" class="form-control" placeholder="Enter Your Last Name" />
+            </div>
 
-    <div class="form-group">
-        <label for="email" class="control-label">Email: </label>
-        <InputText type="email" id="email" @bind-Value="visitor.Email" class="form-control" placeholder="sam@example.com" />
-        <ValidationMessage For="@(() => visitor.Email)" />
-    </div>
+            <div class="form-group">
+                <label for="email" class="control-label">Email: </label>
+                <InputText type="email" id="email" @bind-Value="visitor.Email" class="form-control" placeholder="sam@example.com" />
+                <ValidationMessage For="@(() => visitor.Email)" />
+            </div>
 
-    <div class="form-group">
-        <label for="mobile">Mobile Number:*</label>
-        <InputText id="mobile" @bind-Value="visitor.Mobile" class="form-control" placeholder="00966000000000" />
-    </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number:*</label>
+                <InputText id="mobile" @bind-Value="visitor.Mobile" class="form-control" placeholder="00966000000000" />
+            </div>
 
-    @*<div class="form-group">
+            @*<div class="form-group">
             <label for="NationalId">National Id:*</label>
             <InputNumber id="NationalId" @bind-Value="visitor.Document" class="form-control" />
         </div>*@
 
-    <div class="form-group">
-        <label for="birthDate">Date Of Birth:</label>
-        <InputDate id="birthDate" @bind-Value="visitor.BirthDate" class="form-control" />
-    </div>
+            <div class="form-group">
+                <label for="birthDate">Date Of Birth:</label>
+                <InputDate id="birthDate" @bind-Value="visitor.BirthDate" class="form-control" />
+            </div>
 
-    <label class="mr-2">Language: </label>
+            <label class="mr-2">Language: </label>
 
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="arabic" name="language" value="Arabic" @onchange="SelectLanguage" checked />
-        <label class="form-check-label" for="arabic">
-            Arabic
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="english" name="language" value="English" @onchange="SelectLanguage" />
-        <label class="form-check-label" for="english">
-            English
-        </label>
-    </div>
-    <br />
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="arabic" name="language" value="Arabic" @onchange="SelectLanguage" checked />
+                <label class="form-check-label" for="arabic">
+                    Arabic
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="english" name="language" value="English" @onchange="SelectLanguage" />
+                <label class="form-check-label" for="english">
+                    English
+                </label>
+            </div>
+            <br />
 
-    <label class="mr-2">Gender: </label>
+            <label class="mr-2">Gender: </label>
 
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" checked />
-        <label class="form-check-label" for="female">
-            Female
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
-        <label class="form-check-label" for="male">
-            Male
-        </label>
-    </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" checked />
+                <label class="form-check-label" for="female">
+                    Female
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
+                <label class="form-check-label" for="male">
+                    Male
+                </label>
+            </div>
 
 
-    <div class="form-group">
-        <label for="jobTitle">Job Title:</label>
-        <InputText id="jobTitle" @bind-Value="visitor.JobTitle" class="form-control" />
-    </div>
+            <div class="form-group">
+                <label for="jobTitle">Job Title:</label>
+                <InputText id="jobTitle" @bind-Value="visitor.JobTitle" class="form-control" />
+            </div>
 
-    <div class="form-group">
-        <label for="company">Company:</label>
-        <InputText id="company" @bind-Value="visitor.Company" class="form-control" />
-    </div>
+            <div class="form-group">
+                <label for="company">Company:</label>
+                <InputText id="company" @bind-Value="visitor.Company" class="form-control" />
+            </div>
 
-    @*<div class="form-group">
+            @*<div class="form-group">
             <label for="carLicensePlate">Car License Plate:</label>
             <InputText id="carLicensePlate" @bind-Value="visitor.CarLicencePlate" class="form-control" />
         </div>*@
 
-    <div class="form-group">
-        <label for="clearanceLevel">Clearance Level:</label>
-        <select @bind="visitor.ClearanceLevel" id="clearanceLevel" class="form-control">
-            <option value="">Select a Level ...</option>
-            @foreach (var clearanceLevel in Enum.GetNames(typeof(ClearanceLevel)))
-            {
-                <option>@clearanceLevel</option>
-            }
-        </select>
-    </div>
+            <div class="form-group">
+                <label for="clearanceLevel">Clearance Level:</label>
+                <select @bind="visitor.ClearanceLevel" id="clearanceLevel" class="form-control">
+                    <option value="">Select a Level ...</option>
+                    @foreach (var clearanceLevel in Enum.GetNames(typeof(ClearanceLevel)))
+                    {
+                        <option>@clearanceLevel</option>
+                    }
+                </select>
+            </div>
 
-    <div class="file-field">
-        <label for="NationalIdcopy">National Id copy:</label>
-        <br />
-        <div class="btn btn-primary btn-sm float-left">
-            <span>Choose file</span>
-            <input type="file">
-        </div>
-    </div>
-    <br /><br />
-    <div class="mt-4"></div>
+            <div class="file-field">
+                <label for="NationalIdcopy">National Id copy:</label>
+                <br />
+                <div class="btn btn-primary btn-sm float-left">
+                    <span>Choose file</span>
+                    <input type="file">
+                </div>
+            </div>
+            <br /><br />
+            <div class="mt-4"></div>
 
-    <fieldset>
-        <legend>Notification</legend>
+            <fieldset>
+                <legend>Notification</legend>
 
-        <div class="form-check">
-            <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
-            <label class="form-check-label" for="ischeckedSms">I Accept SMS Notification</label>
-        </div>
+                <div class="form-check">
+                    <InputCheckbox id="ischeckedSms" @bind-Value="acceptSms" class="form-check-input" />
+                    <label class="form-check-label" for="ischeckedSms">I Accept SMS Notification</label>
+                </div>
 
-        <div class="form-check">
-            <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
-            <label class="form-check-label" for="ischeckedEmail">I Accept Email Notification</label>
-        </div>
+                <div class="form-check">
+                    <InputCheckbox id="ischeckedEmail" @bind-Value="acceptEmail" class="form-check-input" />
+                    <label class="form-check-label" for="ischeckedEmail">I Accept Email Notification</label>
+                </div>
 
-        @*<div class="form-check">
-            <InputCheckbox id="ischeckedPolicy" @bind-Value="acceptPolicy" class="form-check-input" />
-            <label class="form-check-label" for="ischeckedPolicy">I agree to the Policy of the Organization</label>
-        </div>*@
+                @*<div class="form-check">
+                <InputCheckbox id="ischeckedPolicy" @bind-Value="acceptPolicy" class="form-check-input" />
+                <label class="form-check-label" for="ischeckedPolicy">I agree to the Policy of the Organization</label>
+            </div>*@
 
+            </fieldset>
+            <br />
+            <div class="mt-4"></div>
+
+            <button type="submit" class="btn btn-outline-primary">Add Visitor</button>
+            <a href="Visitor/List" class="btn btn-outline-secondary">Cancel</a>
+            <div class="mt-4"></div>
+        </EditForm>
     </fieldset>
-    <br />
-    <div class="mt-4"></div>
-
-    <button type="submit" class="btn btn-outline-primary">Add Visitor</button>
-    <a href="Visitor/List" class="btn btn-outline-secondary">Cancel</a>
-</EditForm>
-</fieldset>
-
+</div>
 <br />
 
 <p>@message</p>
@@ -192,7 +194,7 @@
         // Update the Visitor properties
         visitor.AcceptEmailNotification = acceptEmail;
         visitor.AcceptSMSNotification = acceptEmail;
-        
+
 
         // Edit contact
         VisitorService.EditVisitor(visitor);
